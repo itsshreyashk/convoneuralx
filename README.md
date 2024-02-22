@@ -1,4 +1,4 @@
-# Convoneuralx: Deliver Chatbots
+# Convoneuralx: Deliver Chatbots*
 
 Convoneuralx provides a user-friendly client interface and management system for efficiently delivering your chatbots to the masses. Whether you've developed chatbots for customer service, entertainment, or any other purpose, Convoneuralx simplifies the process of deployment and management.
 
@@ -45,4 +45,4 @@ For assistance or more information about Convoneuralx, please refer to the follo
 Convoneuralx is dedicated to simplifying the process of delivering chatbots to the masses, empowering businesses and developers to create impactful conversational experiences. Join us in revolutionizing the way we interact with technology through intelligent chatbots.
 
 ---
-*Contact us: shreyashkumar.me@gmail.com*
+** *Disclaimer : Generated with GPT. Not for actual reason yet.**
