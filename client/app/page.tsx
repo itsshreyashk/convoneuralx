@@ -11,7 +11,9 @@ const Home = () => {
         </div>
         <div className="w-full text-"></div>
         <div className="w-full text-end px-4 py-2">
-          <span className="text-blue-600 active:text-purple-800">Sign In/Up</span>
+          <Link href="/sign">
+            <span className="text-blue-600 active:text-purple-800 cursor-pointer">Sign In/Up</span>
+          </Link>
         </div>
       </div>
       <div className="flex flex-col items-center justify-center h-screen bg-black text-white">
