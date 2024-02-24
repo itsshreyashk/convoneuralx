@@ -14,10 +14,6 @@ app.use(cors({
     origin: "http://localhost:3000",
 }));
 
-app.get('/', (req, res) => {
-    res.send("Greetings, Earthlings! 🌍✌️");
-});
-
 server.listen(PORT, () => {
     console.log(`Listening on ${PORT}`);
 });
