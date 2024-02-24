@@ -1,3 +1,5 @@
+import Session from './webutils/smanager/session';
+
 const dotenv = require('dotenv');
 dotenv.config();
 
