@@ -19,8 +19,8 @@ const Props: React.FC<PropsProps> = ({ usernameRef, passwordRef, handleSignIn, p
                         <div className="space-y-0">
                             <label htmlFor="password" className='text-sm'>Password</label>
                             <div className="flex">
-                                <input type={`${passView}`} name="password" className="px-4 py-2 w-full border rounded-full outline-none text-sm" ref={passwordRef} />
-                                <button type="button" className='text-sm' onClick={() => {
+                                <input type={`${passView}`} name="password" className="px-4 py-2 w-full border border-r-0 rounded-l-full outline-none text-sm" ref={passwordRef} />
+                                <button type="button" className='text-sm px-4 py-2 rounded-r-full bg-white border border-l-0' onClick={() => {
                                     (passView === 'password') ? `${setPassView('text')}` : `${setPassView('password')}`
                                 }}>{(passView === 'password') ? 'view' : 'hide'}</button>
                             </div>
