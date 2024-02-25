@@ -7,27 +7,24 @@ const Page = () => {
     //inputs
     const usernameRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
-    //clickables
-    const makeRef = useRef<HTMLButtonElement>(null);
+    const handleSignIn = () => {
+        if (usernameRef && usernameRef.current && passwordRef && passwordRef.current) {
+            const username: string = usernameRef.current.value.toString();
+            const password: string = passwordRef.current.value.toString();
+        }
+    };
     useEffect(() => {
         document.title = "Sign In";
 
-        if (usernameRef && usernameRef.current) {
-            usernameRef.current.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    alert("Working...")
-                }
-            })
-        }
         return () => {
         }
     }, [])
 
     return (
         <>
-            <Props usernameRef={usernameRef} passwordRef={passwordRef} makeRef={makeRef} />
+            <Props usernameRef={usernameRef} passwordRef={passwordRef} handleSignIn={handleSignIn} />
         </>
     )
 }
 
-export default Page
+export default Page;
