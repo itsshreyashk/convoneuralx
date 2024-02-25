@@ -4,7 +4,11 @@ import React, { useEffect, useRef } from 'react'
 
 import Props from './props'
 const Page = () => {
+    //inputs
     const usernameRef = useRef<HTMLInputElement>(null);
+    const passwordRef = useRef<HTMLInputElement>(null);
+    //clickables
+    const makeRef = useRef<HTMLButtonElement>(null);
     useEffect(() => {
         document.title = "Sign In";
 
@@ -21,7 +25,7 @@ const Page = () => {
 
     return (
         <>
-            <Props usernameRef={usernameRef} />
+            <Props usernameRef={usernameRef} passwordRef={passwordRef} makeRef={makeRef}/>
         </>
     )
 }

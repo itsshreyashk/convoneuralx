@@ -1,8 +1,10 @@
 import React from 'react'
 interface PropsProps {
     usernameRef: React.RefObject<any>,
+    passwordRef: React.RefObject<any>,
+    makeRef: React.RefObject<any>,
 }
-const Props: React.FC<PropsProps> = ({ usernameRef }) => {
+const Props: React.FC<PropsProps> = ({ usernameRef, passwordRef, makeRef }) => {
     return (
         <>
             <div className="flex justify-center py-[25vh]">
@@ -14,11 +16,11 @@ const Props: React.FC<PropsProps> = ({ usernameRef }) => {
                         </div>
                         <div className="space-y-0">
                             <label htmlFor="password" className='text-sm'>Password</label>
-                            <input type="password" name="password" className="px-4 py-2 w-full border rounded-full outline-none text-sm" />
+                            <input type="password" name="password" className="px-4 py-2 w-full border rounded-full outline-none text-sm" ref={passwordRef} />
                         </div>
                     </div>
                     <div className="pt-7 space-y-1">
-                        <button type="button" className='w-full text-center text-sm px-4 py-2 bg-blue-600 text-white rounded-full active:bg-blue-800'>Sign In</button>
+                        <button type="button" className='w-full text-center text-sm px-4 py-2 bg-blue-600 text-white rounded-full active:bg-blue-800' ref={makeRef}>Sign In</button>
                         <button type="button" className='w-full text-center text-sm px-4 py-2 bg-gray-100 text-gray-800 rounded-full active:bg-gray-300'>Forgot Password</button>
                     </div>
                 </div>
