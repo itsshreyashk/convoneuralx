@@ -3,8 +3,10 @@ interface PropsProps {
     usernameRef: React.RefObject<any>,
     passwordRef: React.RefObject<any>,
     handleSignIn: () => void,
+    passView: any,
+    setPassView: any,
 }
-const Props: React.FC<PropsProps> = ({ usernameRef, passwordRef, handleSignIn }) => {
+const Props: React.FC<PropsProps> = ({ usernameRef, passwordRef, handleSignIn, passView, setPassView }) => {
     return (
         <>
             <div className="flex justify-center py-[25vh]">
@@ -16,7 +18,12 @@ const Props: React.FC<PropsProps> = ({ usernameRef, passwordRef, handleSignIn })
                         </div>
                         <div className="space-y-0">
                             <label htmlFor="password" className='text-sm'>Password</label>
-                            <input type="password" name="password" className="px-4 py-2 w-full border rounded-full outline-none text-sm" ref={passwordRef} />
+                            <div className="flex">
+                                <input type={`${passView}`} name="password" className="px-4 py-2 w-full border rounded-full outline-none text-sm" ref={passwordRef} />
+                                <button type="button" className='text-sm' onClick={() => {
+                                    (passView === 'password') ? `${setPassView('text')}` : `${setPassView('password')}`
+                                }}>{(passView === 'password') ? 'view' : 'hide'}</button>
+                            </div>
                         </div>
                     </div>
                     <div className="pt-7 space-y-1">

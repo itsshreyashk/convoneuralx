@@ -1,9 +1,10 @@
 'use client'
 
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import Props from './props'
 const Page = () => {
+    const [passView, setPassView] = useState('password');
     const usernameRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
     const handleSignIn = async () => {
@@ -24,7 +25,7 @@ const Page = () => {
 
     return (
         <>
-            <Props usernameRef={usernameRef} passwordRef={passwordRef} handleSignIn={handleSignIn} />
+            <Props usernameRef={usernameRef} passwordRef={passwordRef} handleSignIn={handleSignIn} passView={passView} setPassView={setPassView} />
         </>
     )
 }
