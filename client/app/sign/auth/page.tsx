@@ -25,7 +25,7 @@ const Page = () => {
 
     return (
         <>
-            <Props usernameRef={usernameRef} passwordRef={passwordRef} makeRef={makeRef}/>
+            <Props usernameRef={usernameRef} passwordRef={passwordRef} makeRef={makeRef} />
         </>
     )
 }
