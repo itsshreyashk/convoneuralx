@@ -4,17 +4,19 @@ import React, { useEffect, useRef } from 'react'
 
 import Props from './props'
 const Page = () => {
-    //inputs
     const usernameRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
-    const handleSignIn = () => {
+    const handleSignIn = async () => {
         if (usernameRef && usernameRef.current && passwordRef && passwordRef.current) {
-            const username: string = usernameRef.current.value.toString();
-            const password: string = passwordRef.current.value.toString();
+            const Route = (await (await fetch('http://localhost:3000/routes.json')).json()).auth; const username: string = usernameRef.current.value.toString();
+            const Username: string = usernameRef.current.value.toString();
+            const Password: string = passwordRef.current.value.toString();
+
         }
     };
     useEffect(() => {
         document.title = "Sign In";
+        document.body.style.backgroundImage = 'url("https://www.toptal.com/designers/subtlepatterns/uploads/pipes.png")';
 
         return () => {
         }

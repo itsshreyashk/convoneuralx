@@ -8,7 +8,7 @@ const Props: React.FC<PropsProps> = ({ usernameRef, passwordRef, handleSignIn })
     return (
         <>
             <div className="flex justify-center py-[25vh]">
-                <div className="w-[80%] max-w-[350px] min-w-[max-content] border h-[max-content] rounded-xl px-4 py-2">
+                <div className="w-[80%] max-w-[350px] min-w-[max-content] border h-[max-content] rounded-xl px-4 py-2 backdrop-blur-xl">
                     <div className="w-full text-start space-y-2">
                         <div className="space-y-0">
                             <label htmlFor="username" className='text-sm'>Username</label>
