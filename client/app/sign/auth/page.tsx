@@ -12,7 +12,12 @@ const Page = () => {
     const passwordRef = useRef<HTMLInputElement>(null);
     const handleSignIn = async () => {
         if (usernameRef && usernameRef.current && passwordRef && passwordRef.current && usernameRef.current.value != (null || '') && passwordRef.current.value != (null || '')) {
-            const Route = (await (await fetch('http://localhost:3000/routes.json')).json()).auth;
+            const response = await fetch('http://localhost:3000/api/getRoutes');
+            console.log(response);
+            
+            const responseData = await response.json();
+            console.log(responseData);
+
             const Username: string = usernameRef.current.value.toString();
             const Password: string = passwordRef.current.value.toString();
 

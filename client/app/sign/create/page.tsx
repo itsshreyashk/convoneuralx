@@ -16,6 +16,10 @@ const Page = () => {
     const handleSignUp = () => {
 
     }
+    const validateEmail = (email: string) => {
+        const re: any = /\S+@\S+\.\S+/;
+        return re.test(email);
+    }
     useEffect(() => {
 
         document.title = "Sign Up";
