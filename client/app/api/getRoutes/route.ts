@@ -1,11 +1,19 @@
 interface Routes {
     [key: string]: string;
 }
-import { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import routesJSON from './routes.json';
 
-export async function GET(req : NextRequest) {
+export async function POST(req: NextRequest, res: NextResponse) {
+    const body: any = await req.json();
+    const getRoute = body.getRoute;
+    console.log(body);
+
+    const routes: Routes = routesJSON;
+    const response: string | undefined = routes[getRoute];
+    console.log(response);
+
     return new Response(JSON.stringify({
-        message : 'Hello world!'
-    }))    
+        route: response
+    }));
 }
