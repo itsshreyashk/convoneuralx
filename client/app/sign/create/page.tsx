@@ -13,12 +13,43 @@ const Page = () => {
     const handleGoBack = () => {
         router.back();
     };
-    const handleSignUp = () => {
-
-    }
-    const validateEmail = (email: string) => {
-        const re: any = /\S+@\S+\.\S+/;
-        return re.test(email);
+    const handleSignUp = async () => {
+        if (usernameRef && usernameRef.current && passwordRef && passwordRef.current && ageRef && ageRef.current && emailRef && emailRef.current) {
+            const route = (await (await fetch('http://localhost:3000/api/getRoutes', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    getRoute: "create"
+                })
+            })).json()).route;
+            const Xusername: string = usernameRef.current.value;
+            const Xpassword: string = passwordRef.current.value;
+            const Xage: number = parseInt(ageRef.current.value);
+            const Xemail: string = emailRef.current.value;
+            if ((Xusername && Xpassword && Xage && Xemail) !== (null || '' || NaN)) {
+                const Request: any = (await (await fetch(route, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: Xusername,
+                        password: Xpassword,
+                        age: Xage,
+                        email: Xemail,
+                    }),
+                })).json()); //check if ok or not.
+                if (Request.status !== 200) {
+                    alert(Request.message);
+                } else {
+                    //Good to proceed.
+                }
+            } else {
+                alert(`Check the fields you've entered.`)
+            }
+        }
     }
     useEffect(() => {
 

@@ -1,4 +1,4 @@
 {
     "auth" : "http://localhost:3001/authorize",
-    "create" : "http://localhost:3001/make"
+    "create" : "http://localhost:3001/create"
 }
