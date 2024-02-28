@@ -3,7 +3,7 @@ export default class Session {
     adlength;
     constructor() {
         this.users = [];
-        this.adlength = 20;
+        this._length_key_ = 20;
     }
     async addSession(username, password) {
         try {
@@ -38,7 +38,7 @@ export default class Session {
     async makeRandomSSID() {
         const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^';
         let shiftKey = '';
-        for (let i = 0; i < this.adlength; i++) {
+        for (let i = 0; i < this._length_key_; i++) {
             shiftKey += chars.charAt(Math.floor(Math.random() * chars.length));
         }
         return shiftKey;

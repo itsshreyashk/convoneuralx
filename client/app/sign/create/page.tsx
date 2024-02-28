@@ -41,6 +41,7 @@ const Page = () => {
                         email: Xemail,
                     }),
                 })).json()); //check if ok or not.
+                
                 if (Request.status !== 200) {
                     alert(Request.message);
                 } else {
@@ -51,8 +52,15 @@ const Page = () => {
             }
         }
     }
+    async function checkUp() {
+        return ((await (await fetch('http://localhost:3001/health')).json()).health);
+    }
     useEffect(() => {
-
+        const fetchData = async () => {
+            console.log(await checkUp());
+        };
+        fetchData();
+    
         document.title = "Sign Up";
 
         return () => {

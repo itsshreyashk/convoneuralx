@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-export default class UserDB {
+export default class Sign_Up_Manager {
     constructor() {
         mongoose.connect('mongodb://localhost:27017/convoneuralx');
         const Schema = mongoose.Schema;
