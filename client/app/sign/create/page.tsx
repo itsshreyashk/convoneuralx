@@ -23,7 +23,6 @@ const Page = () => {
     useEffect(() => {
 
         document.title = "Sign Up";
-        document.body.style.backgroundImage = 'url("https://www.toptal.com/designers/subtlepatterns/uploads/pipes.png")';
 
         return () => {
         }
