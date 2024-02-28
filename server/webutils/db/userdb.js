@@ -1,9 +1,16 @@
-import userModel from "./user.model.js";
-import mongoose from 'mongoose';
-
-export class Sign_Up_Manager {
+import mongoose from "mongoose";
+const Schema = mongoose.Schema;
+const userSchema = new Schema({
+    username: String,
+    password: String,
+    personal: {
+        age: Number,
+        phone: Number,
+    }
+});
+const User = new mongoose.model('User', userSchema);
+export default class Sign_Up_Manager {
     constructor() {
-        this.User = userModel;
     }
     async addUser(data) {
         try {
@@ -18,16 +25,6 @@ export class Sign_Up_Manager {
     async removeUser(username, password) {
 
     };
-}
-export class Check_User {
-    constructor() {
-        mongoose.connect('mongodb://localhost:27017/convoneuralx');
-        const Schema = mongoose.Schema;
-        const userSchema = new Schema({
-            username: String,
-        });
-        this.User = mongoose.model('User', userSchema);
-    }
     async User_Exists(username) {
         try {
             const existingUser = await this.User.findOne({ username });

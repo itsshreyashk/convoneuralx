@@ -1,6 +1,6 @@
 //file imports
 import Session from './webutils/smanager/session.js';
-import { Sign_Up_Manager, Check_User } from './webutils/db/userdb.js';
+import Sign_Up_Manager from './webutils/db/userdb.js';
 //modules
 import dotenv from 'dotenv';
 import express from 'express';
@@ -20,9 +20,8 @@ const _Test_Email = (email) => {
     return re.test(email);
 }
 
-const _Session_ = new Session();
+const _Session_Manager_ = new Session();
 const _Sign_Up_Manager_ = new Sign_Up_Manager();
-const _Check_User_ = new Check_User();
 
 app.use(cors({
     origin: process.env.ALLOWED_ORIGINS.split(','),
@@ -43,7 +42,7 @@ app.post('/create', async (req, res) => {
                 });
             } else {
                 //Checking is user already exists.
-                if (await _Check_User_.User_Exists(username)) {
+                if (await _Sign_Up_Manager_.User_Exists(username)) {
                     //User exists.
                     res.status(409).json({
                         message: 'User already exists.'
@@ -57,12 +56,11 @@ app.post('/create', async (req, res) => {
                         }
                     }); //Finally Creating User.
                     if (Check_User.status === true) {
-                        //User successfully created.
-
+                        //User successfully created now return a session key.
                     } else {
                         res.status(500).json({
                             message: 'Internal Server Error.'
-                        }); 
+                        });
                     }
                 }
 
