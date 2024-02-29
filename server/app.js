@@ -26,6 +26,9 @@ const _Sign_Up_Manager_ = new Sign_Up_Manager();
 app.use(cors({
     origin: process.env.ALLOWED_ORIGINS.split(','),
 }));
+
+app.use(express.json());
+
 app.post('/create', async (req, res) => {
     const body = req.body;
 
@@ -33,6 +36,12 @@ app.post('/create', async (req, res) => {
     const password = body.password;
     const age = body.age;
     const email = body.email;
+    console.log(username);
+    console.log(password);
+    console.log(email);
+    console.log(age);
+
+
 
     if ((username && password && age && email) !== (null || NaN || '')) {
         if (_Test_Email(email)) {
@@ -44,6 +53,7 @@ app.post('/create', async (req, res) => {
                 //Checking is user already exists.
                 if (await _Sign_Up_Manager_.User_Exists(username)) {
                     //User exists.
+                    console.log(username);
                     res.status(409).json({
                         message: 'User already exists.'
                     });
@@ -53,11 +63,28 @@ app.post('/create', async (req, res) => {
                         username: username, password: password, personal: {
                             age: age,
                             email: email,
-                        }
-                    }); //Finally Creating User.
-                    if (Check_User.status === true) {
+                        }}); //Finally Creating User.
+                        console.log('Added User.');
+                    if (Create_User.status === true) {
+                        console.log('Creation status true.');
                         //User successfully created now return a session key.
+                        const Add_Session = await _Session_Manager_.addSession(username, password);
+                        if (Add_Session.status === true) {
+                            const Session_Key_Obtained = Add_Session.ssid;
+                            res.status(200).json({
+                                proceed : true,
+                                session : Session_Key_Obtained                                
+                            });
+                            console.log('Session added.');
+                        } else {
+                            //Internal server error
+                            res.status(500).json({
+                                message: 'Internal Server Error.' //the error point
+                            })
+                            console.log('Session not added.');
+                        }
                     } else {
+                        console.log('Error validating User .status problem.');
                         res.status(500).json({
                             message: 'Internal Server Error.'
                         });

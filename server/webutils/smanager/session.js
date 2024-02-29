@@ -1,6 +1,6 @@
-export default class Session {
+export default class Session {   
     users;
-    adlength;
+    _length_key_;
     constructor() {
         this.users = [];
         this._length_key_ = 20;

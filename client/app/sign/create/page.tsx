@@ -41,11 +41,11 @@ const Page = () => {
                         email: Xemail,
                     }),
                 })).json()); //check if ok or not.
-                
+
                 if (Request.status !== 200) {
                     alert(Request.message);
                 } else {
-                    //Good to proceed.
+                    console.log(Request.session); //logging the session key
                 }
             } else {
                 alert(`Check the fields you've entered.`)
@@ -60,7 +60,7 @@ const Page = () => {
             console.log(await checkUp());
         };
         fetchData();
-    
+
         document.title = "Sign Up";
 
         return () => {
