@@ -24,28 +24,31 @@ const Page = () => {
                     getRoute: "create"
                 })
             })).json()).route;
-            const Xusername: string = usernameRef.current.value;
-            const Xpassword: string = passwordRef.current.value;
-            const Xage: number = parseInt(ageRef.current.value);
-            const Xemail: string = emailRef.current.value;
-            if ((Xusername && Xpassword && Xage && Xemail) !== (null || '' || NaN)) {
+            const given_username: string = usernameRef.current.value;
+            const given_password: string = passwordRef.current.value;
+            const given_age: number = parseInt(ageRef.current.value);
+            const given_email: string = emailRef.current.value;
+            if ((given_username && given_password && given_age && given_email) !== (null || '' || NaN)) {
                 const Request: any = (await (await fetch(route, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        username: Xusername,
-                        password: Xpassword,
-                        age: Xage,
-                        email: Xemail,
+                        username: given_username,
+                        password: given_password,
+                        age: given_age,
+                        email: given_email,
                     }),
-                })).json()); //check if ok or not.
+                })).json());
+                console.log(Request);
 
-                if (Request.status !== 200) {
-                    alert(Request.message);
+                if (Request.status === 200) {
+                    const ssid = Request.ssid; //Session ID.
+                    localStorage.setItem('ssid', ssid);
                 } else {
-                    console.log(Request.session); //logging the session key
+                    console.log("Failure.");
+
                 }
             } else {
                 alert(`Check the fields you've entered.`)

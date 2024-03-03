@@ -72,13 +72,15 @@ app.post('/create', async (req, res) => {
                         if (Add_Session.success === true) {
                             const Session_Key_Obtained = Add_Session.ssid;
                             res.status(200).json({
+                                status : 200,
                                 proceed : true,
-                                session : Session_Key_Obtained                                
+                                ssid : Session_Key_Obtained                                
                             });
                             console.log('Session added.');
                         } else {
                             //Internal server error
                             res.status(500).json({
+                                status : 500,
                                 message: 'Internal Server Error.' //the error point
                             })
                             console.log('Session not added.');
