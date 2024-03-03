@@ -69,7 +69,7 @@ app.post('/create', async (req, res) => {
                         console.log('Creation status true.');
                         //User successfully created now return a session key.
                         const Add_Session = await _Session_Manager_.addSession(username, password);
-                        if (Add_Session.status === true) {
+                        if (Add_Session.success === true) {
                             const Session_Key_Obtained = Add_Session.ssid;
                             res.status(200).json({
                                 proceed : true,
