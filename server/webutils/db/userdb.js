@@ -12,7 +12,7 @@ const userSchema = new Schema({
     }
 });
 const User = new mongoose.model('Users', userSchema);
-export default class Sign_Up_Manager {
+export default class Sign_Up_In_Manager {
     constructor() {
     }
     async addUser(data) {

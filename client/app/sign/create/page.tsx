@@ -41,7 +41,9 @@ const Page = () => {
                         email: given_email,
                     }),
                 })).json());
-                console.log(Request);
+
+                
+                
 
                 if (Request.status === 200) {
                     const ssid = Request.ssid; //Session ID.

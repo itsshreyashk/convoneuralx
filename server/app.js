@@ -1,6 +1,6 @@
 //file imports
 import Session from './webutils/smanager/session.js';
-import Sign_Up_Manager from './webutils/db/userdb.js';
+import Sign_Up_In_Manager from './webutils/db/userdb.js';
 //modules
 import dotenv from 'dotenv';
 import express from 'express';
@@ -21,7 +21,7 @@ const _Test_Email = (email) => {
 }
 
 const _Session_Manager_ = new Session();
-const _Sign_Up_Manager_ = new Sign_Up_Manager();
+const _Sign_Up_In_Manager_ = new Sign_Up_In_Manager();
 
 app.use(cors({
     origin: process.env.ALLOWED_ORIGINS.split(','),
@@ -51,7 +51,7 @@ app.post('/create', async (req, res) => {
                 });
             } else {
                 //Checking is user already exists.
-                if (await _Sign_Up_Manager_.User_Exists(username)) {
+                if (await _Sign_Up_In_Manager_.User_Exists(username)) {
                     //User exists.
                     console.log(username);
                     res.status(409).json({
@@ -59,7 +59,7 @@ app.post('/create', async (req, res) => {
                     });
                 } else {
                     //Good to Go.
-                    const Create_User = await _Sign_Up_Manager_.addUser({
+                    const Create_User = await _Sign_Up_In_Manager_.addUser({
                         username: username, password: password, personal: {
                             age: age,
                             email: email,
