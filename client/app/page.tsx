@@ -9,7 +9,7 @@ const Home = () => {
         <div className="w-full text-start px-4 py-2">
           <span className="text-white">ConvoneuralX</span>
         </div>
-        <div className="w-full text-"></div>
+        <div className="w-full text-center"></div>
         <div className="w-full text-end px-4 py-2">
           <Link href="/sign">
             <span className="text-blue-600 active:text-purple-800 cursor-pointer">Sign In/Up</span>
