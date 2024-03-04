@@ -7,7 +7,7 @@ import express from 'express';
 import { Server } from 'socket.io';
 import cors from 'cors';
 import http from 'http';
-dotenv.config();
+dotenv.config(); //dotenv config
 
 const PORT = process.env.PORT || 3001;
 
