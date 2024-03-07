@@ -44,12 +44,11 @@ app.post('/create', async (req, res) => {
 
     if ((username && password && age && email) !== (null || NaN || '')) {
         if (_Test_Email(email)) {
-            if (age <= 0) {
+            if (age <= 0 && age <= 150) {
                 res.status(500).json({
                     message: 'Age is invalid.'
                 });
             } else {
-                //Checking is user already exists.
                 if (await check_if_user_exist(username)) {
                     res.status(409).json({
                         message: 'User already exists.'
@@ -61,14 +60,14 @@ app.post('/create', async (req, res) => {
                             age: age,
                             email: email,
                         }
-                    }); //Finally Creating User.
+                    }); // Creating User.
                     console.log('Added User.');
                     if (Create_User.status === true) {
                         console.log('Creation status true.');
                         //User successfully created now return a session key.
                         const Add_Session = await _Session_Manager_.addSession(username, password);
                         if (Add_Session.success === true) {
-                            const Session_Key_Obtained = Add_Session.ssid;
+                            const Session_Key_Obtained = Add_Session.ssid.toString();
                             res.status(200).json({
                                 status: 200,
                                 proceed: true,

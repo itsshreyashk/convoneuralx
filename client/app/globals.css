@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.Error_Popup_Container {
+    animation: Error_Popup 0.4s;
+}
+@keyframes Error_Popup {
+    0% {
+        right: -370px;
+    }
+
+    100% {
+        right: 40px;
+    }
+}
