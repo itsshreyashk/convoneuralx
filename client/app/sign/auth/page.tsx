@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation'
 import Props from './props'
 const Page = () => {
     const router = useRouter()
-
     const [passView, setPassView] = useState('password');
     const usernameRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
