@@ -19,15 +19,30 @@ const io = new Server(server);
 const _Session_Manager_ = new Session();
 const _User_Manager_ = new User_Manager();
 
-app.use(cors({
-    origin: process.env.ALLOWED_ORIGINS.split(','),
-}));
+try {
+    (function () {
+        app.use(cors({
+            origin: process.env.ALLOWED_ORIGINS.split(','),
+        }));
+        app.use(express.json());
+    }())
 
-app.use(express.json());
+} catch (err) {
+    console.log("Error setting middleware");
+}
 
 const test_email = (email) => {
-    const re = /\S+@\S+\.\S+/;
-    return re.test(email);
+    //testing function
+
+    try {
+        (function () {
+            const re = /\S+@\S+\.\S+/;
+            return re.test(email.toString());
+        }())
+    } catch (err) {
+        console.log(`Error validating Email : ${err}`);
+    }
+
 }
 const check_if_user_exist = async (username) => {
     return await _User_Manager_.User_Exists(username);
@@ -36,7 +51,7 @@ const validate_usnm_pwd = async (username, password) => {
     return (username.toString() && password.toString()) !== (null || NaN || '');
 }
 const validate_age = async (age) => {
-    return (age <= 0 && age <= 150);
+    return (parseInt(age) <= 0 && parseInt(age) <= 150);
 }
 app.post('/create', async (req, res) => {
     const username = req.body.username.toString();
@@ -68,22 +83,31 @@ app.post('/create', async (req, res) => {
                     if (Create_User.status === true) {
                         console.log('Creation status true.');
                         //User successfully created now return a session key.
-                        const Add_Session = await _Session_Manager_.addSession(username, password);
-                        if (Add_Session.success === true) {
-                            const Session_Key_Obtained = Add_Session.ssid.toString();
-                            res.status(200).json({
-                                status: 200,
-                                proceed: true,
-                                ssid: Session_Key_Obtained
-                            });
-                            console.log('Session added.');
-                        } else {
+                        try {
+                            const Add_Session = await _Session_Manager_.addSession(username, password);
+                            if (Add_Session.success === true) {
+                                const Session_Key_Obtained = Add_Session.ssid.toString();
+                                res.status(200).json({
+                                    status: 200,
+                                    proceed: true,
+                                    ssid: Session_Key_Obtained
+                                });
+                                console.log('Session added.');
+                            } else {
+                                res.status(500).json({
+                                    status: 500,
+                                    message: 'Internal Server Error.'
+                                })
+                                console.log('Session not added.');
+                            }
+                        } catch (err) {
+                            console.log(err);
                             res.status(500).json({
                                 status: 500,
                                 message: 'Internal Server Error.'
                             })
-                            console.log('Session not added.');
                         }
+
                     } else {
                         console.log('Error validating User .status problem.');
                         res.status(500).json({
@@ -105,13 +129,17 @@ app.post('/create', async (req, res) => {
     }
 });
 app.post('/authorize', async (req, res) => {
-    const username = req.body.username.toString();
-    const password = req.body.password.toString();
+    (function () {
+        const username = req.body.username.toString(); //username
+        const password = req.body.password.toString(); //password    
+    }())
     if (await validate_usnm_pwd(username, password)) {
-        const Check_User = await _User_Manager_.Check_User(username, password);
+        (function () {
+            const Check_User = _User_Manager_.Check_User(username, password);
+        }())
         if (Check_User.status === true) {
-
             //Generating Session Key.
+
             const key = await _Session_Manager_.addSession(username, password).ssid.toString();
             if (key) {
                 (function () {
@@ -145,11 +173,20 @@ app.post('/authorize', async (req, res) => {
     }
 })
 app.get('/health', async (req, res) => {
-    console.log("Health Checkup.")
-    res.status(200).json({
-        health: 'GOOD'
-    });
+    try {
+        console.log("Health Checkup.")
+        res.status(200).json({
+            health: 'GOOD'
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(200).json({
+            health: 'BAD',
+            error: err,
+        })
+    }
+
 });
 server.listen(PORT, () => {
-    console.log(`Listening on ${PORT}`);
+    console.log(`Listening on http://localhost${PORT}`);
 });
