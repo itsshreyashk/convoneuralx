@@ -1,4 +1,4 @@
-export default class Session {   
+export default class Session {
     users;
     _length_key_;
     constructor() {
@@ -16,7 +16,7 @@ export default class Session {
             return { success: true, ssid: rKey };
         } catch (err) {
             console.log(`I've got an error ${err}`);
-            return null;
+            return {success: false};
         }
 
     }

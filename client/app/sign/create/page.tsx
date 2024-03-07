@@ -30,7 +30,7 @@ const Page = () => {
             const given_age: number = parseInt(ageRef.current.value);
             const given_email: string = emailRef.current.value;
             if ((given_username && given_password && given_age && given_email) !== (null || '' || NaN)) {
-                const Request: any = (await (await fetch(route, {
+                const Response: any = (await (await fetch(route, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -46,12 +46,12 @@ const Page = () => {
 
 
 
-                if (Request.status === 200) {
-                    const ssid = Request.ssid; //Session ID.
+                if (Response.status === 200) {
+                    const ssid = Response.ssid; //Session ID.
                     localStorage.setItem('ssid', ssid);
                 } else {
                     console.log("Failure.");
-                    set_error_message(Request.message);
+                    set_error_message(Response.message);
                     document.querySelector('.Error_Popup_Container')?.classList.toggle('hidden');
 
                     setTimeout(() => {

@@ -25,26 +25,29 @@ app.use(cors({
 
 app.use(express.json());
 
-const _Test_Email = (email) => {
+const test_email = (email) => {
     const re = /\S+@\S+\.\S+/;
     return re.test(email);
 }
 const check_if_user_exist = async (username) => {
     return await _User_Manager_.User_Exists(username);
 }
-
+const validate_usnm_pwd = async (username, password) => {
+    return (username.toString() && password.toString()) !== (null || NaN || '');
+}
+const validate_age = async (age) => {
+    return (age <= 0 && age <= 150);
+}
 app.post('/create', async (req, res) => {
-    const body = req.body;
-
-    const username = body.username;
-    const password = body.password;
-    const age = body.age;
-    const email = body.email;
+    const username = req.body.username.toString();
+    const password = req.body.password.toString();
+    const age = parseInt(req.body.age);
+    const email = req.body.email.toString();
 
 
-    if ((username && password && age && email) !== (null || NaN || '')) {
-        if (_Test_Email(email)) {
-            if (age <= 0 && age <= 150) {
+    if (await validate_usnm_pwd(username, password)) {
+        if (test_email(email)) {
+            if (await validate_age(age)) {
                 res.status(500).json({
                     message: 'Age is invalid.'
                 });
@@ -101,8 +104,45 @@ app.post('/create', async (req, res) => {
         });
     }
 });
-app.post('/', (req, res) => {
+app.post('/authorize', async (req, res) => {
+    const username = req.body.username.toString();
+    const password = req.body.password.toString();
+    if (await validate_usnm_pwd(username, password)) {
+        const Check_User = await _User_Manager_.Check_User(username, password);
+        if (Check_User.status === true) {
 
+            //Generating Session Key.
+            const key = await _Session_Manager_.addSession(username, password).ssid.toString();
+            if (key) {
+                (function () {
+                    res.status(200).json({
+                        status: 200,
+                        key: key,
+                        allow: "YES",
+                        message: Check_User.message,
+                    });
+                }())
+
+            } else {
+                (function () {
+                    res.status(500).json({
+                        status: 500,
+                        allow: "NO",
+                        message: 'Internal Server Error',
+                    });
+                }())
+            }
+
+        } else {
+            (function () {
+                res.status(500).json({
+                    status: 500,
+                    allow: "NO",
+                    message: Check_User.message,
+                });
+            }())
+        }
+    }
 })
 app.get('/health', async (req, res) => {
     console.log("Health Checkup.")
