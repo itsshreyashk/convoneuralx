@@ -17,9 +17,9 @@ export default class User_Manager {
     }
     async addUser(data) {
         try {
-            const newUser = new User(data);
-            console.log(newUser);
-            await newUser.save();
+            const User_D = new User(data);
+            console.log(User_D);
+            await User_D.save();
             return { status: true, code: 200 };
         } catch (err) {
             console.log(`Sorry! got an error ${err}`);
@@ -27,12 +27,16 @@ export default class User_Manager {
         }
     };
     async removeUser(username, password) {
+        try {
 
+        } catch (err) {
+            console.log("Error");
+            return { status: false, code: 500, message: err }
+        }
     };
     async User_Exists(username) {
         try {
             const existingUser = await User.findOne({ username });
-            console.log("Existing User:", existingUser); // Log the existingUser for debugging
             return !!existingUser; // Returns true if user exists, false otherwise
         } catch (err) {
             console.log(`Error checking user existence: ${err}`);
