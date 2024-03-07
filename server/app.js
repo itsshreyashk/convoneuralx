@@ -36,24 +36,19 @@ app.post('/create', async (req, res) => {
     const password = body.password;
     const age = body.age;
     const email = body.email;
-    console.log(username);
-    console.log(password);
-    console.log(email);
-    console.log(age);
 
 
 
     if ((username && password && age && email) !== (null || NaN || '')) {
         if (_Test_Email(email)) {
-            if (age <= 0) {
+            if (age <= 0 && age <=150) {
                 res.status(500).json({
                     message: 'Age is invalid.'
                 });
             } else {
                 //Checking is user already exists.
-                if (await _Sign_Up_In_Manager_.User_Exists(username)) {
+                if (await _Sign_Up_In_Manager_.User_Exists(username.toString())) {
                     //User exists.
-                    console.log(username);
                     res.status(409).json({
                         message: 'User already exists.'
                     });
@@ -63,7 +58,7 @@ app.post('/create', async (req, res) => {
                         username: username, password: password, personal: {
                             age: age,
                             email: email,
-                        }}); //Finally Creating User.
+                        }}); //Creating User.
                         console.log('Added User.');
                     if (Create_User.status === true) {
                         console.log('Creation status true.');
@@ -74,14 +69,14 @@ app.post('/create', async (req, res) => {
                             res.status(200).json({
                                 status : 200,
                                 proceed : true,
-                                ssid : Session_Key_Obtained                                
+                                ssid : Session_Key_Obtained,
+                                message : "Account Created Successfully."
                             });
-                            console.log('Session added.');
                         } else {
                             //Internal server error
                             res.status(500).json({
                                 status : 500,
-                                message: 'Internal Server Error.' //the error point
+                                message: 'Internal Server Error.'
                             })
                             console.log('Session not added.');
                         }
