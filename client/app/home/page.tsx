@@ -9,7 +9,7 @@ const Page: React.FC = () => {
         setPicURL("https://avatars.githubusercontent.com/u/147302693?v=4");
         return () => {
         }
-    }, [])
+    }, [dislplayName, picURL])
 
     return (
         <>
@@ -23,7 +23,7 @@ const Page: React.FC = () => {
                         <span className='text-blue-600 text-sm py-3 font-bold hover:underline cursor-pointer'>{dislplayName}</span>
                         <img src={picURL} alt="profile" className='rounded-full w-11 bg-white disable_select' />
                         <div className="h-11 w-11 flex items-center justify-center">
-                            <span className="material-symbols-outlined cursor-pointer hover:border-gray-600 border active:opacity-70 disable_select">
+                            <span className="material-symbols-outlined cursor-pointer hover:border-gray-600 border active:opacity-70 disable_select active:bg-gray-400">
                                 add
                             </span>
                         </div>
@@ -31,7 +31,7 @@ const Page: React.FC = () => {
                 </div>
             </nav>
             <div className="p-4">
-                
+
             </div>
         </>
     )
