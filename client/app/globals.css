@@ -5,6 +5,7 @@
 .Error_Popup_Container {
     animation: Error_Popup 0.4s;
 }
+
 @keyframes Error_Popup {
     0% {
         right: -370px;
@@ -13,4 +14,13 @@
     100% {
         right: 40px;
     }
+}
+
+.disable_select::selection {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
