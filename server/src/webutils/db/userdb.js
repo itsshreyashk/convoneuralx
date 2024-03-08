@@ -27,12 +27,20 @@ export default class User_Manager {
     };
     async removeUser(username, password) {
         try {
-
+            const user = await User.findOneAndDelete({ username: username, password: password }).exec();
+            if (user) {
+                console.log('User removed successfully:', user);
+                return { status: true, message: 'User removed successfully.', code: 200 };
+            } else {
+                console.log('User not found or password incorrect.');
+                return { status: false, message: 'User not found or password incorrect.', code: 404 };
+            }
         } catch (err) {
-            console.log("Error");
-            return { status: false, code: 500, message: err }
+            console.log('Error removing user:', err);
+            return { status: false, message: 'Internal Server Error.', code: 500 };
         }
-    };
+    }
+
     async Check_User(username, password) {
         try {
             const user = await User.findOne({ username, password }).exec();

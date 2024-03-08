@@ -36,8 +36,12 @@ const Page = () => {
             })).json();
             if (Response.status === 200) {
                 //Good to go
+                console.log(Response.key);
+                
             } else {
                 //Display error.
+                console.log(`Error. ${Response.message}`);
+                
             }
 
         } else {

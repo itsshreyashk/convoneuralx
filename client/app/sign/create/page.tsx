@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Props from './props'
+import showError from '../errorpop';
 const Page = () => {
     const router = useRouter();
     const [passView, setPassView] = useState('password');
@@ -51,12 +52,7 @@ const Page = () => {
                     localStorage.setItem('ssid', ssid);
                 } else {
                     console.log("Failure.");
-                    set_error_message(Response.message);
-                    document.querySelector('.Error_Popup_Container')?.classList.toggle('hidden');
-
-                    setTimeout(() => {
-                        document.querySelector('.Error_Popup_Container')?.classList.toggle('hidden');
-                    }, 3000);
+                    showError(Response.message.toString(), set_error_message, 3000);
                 }
             } else {
                 alert(`Check the fields you've entered.`)

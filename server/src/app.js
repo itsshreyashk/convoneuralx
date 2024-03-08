@@ -86,7 +86,7 @@ app.post('/create', async (req, res) => {
                         try {
                             const Add_Session = await _Session_Manager_.addSession(username, password);
                             if (Add_Session.success === true) {
-                                const Session_Key_Obtained = Add_Session.ssid.toString();
+                                const Session_Key_Obtained = await Add_Session.ssid.toString();
                                 res.status(200).json({
                                     status: 200,
                                     proceed: true,
@@ -129,27 +129,23 @@ app.post('/create', async (req, res) => {
     }
 });
 app.post('/authorize', async (req, res) => {
-    (function () {
-        const username = req.body.username.toString(); //username
-        const password = req.body.password.toString(); //password    
-    }())
+    const username = req.body.username.toString(); //username
+    const password = req.body.password.toString(); //password    
+    console.log(username);
     if (await validate_usnm_pwd(username, password)) {
-        (function () {
-            const Check_User = _User_Manager_.Check_User(username, password);
-        }())
+        const Check_User = await _User_Manager_.Check_User(username, password);
         if (Check_User.status === true) {
             //Generating Session Key.
-
             const key = await _Session_Manager_.addSession(username, password).ssid.toString();
             if (key) {
-                (function () {
+                (function (Check_User) {
                     res.status(200).json({
                         status: 200,
                         key: key,
                         allow: "YES",
                         message: Check_User.message,
                     });
-                }())
+                }(Check_User))
 
             } else {
                 (function () {
@@ -162,13 +158,13 @@ app.post('/authorize', async (req, res) => {
             }
 
         } else {
-            (function () {
+            (function (Check_User) {
                 res.status(500).json({
                     status: 500,
                     allow: "NO",
                     message: Check_User.message,
                 });
-            }())
+            }(Check_User))
         }
     }
 })
