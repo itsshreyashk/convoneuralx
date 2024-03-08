@@ -35,12 +35,12 @@ const test_email = (email) => {
     //testing function
 
     try {
-        (function () {
-            const re = /\S+@\S+\.\S+/;
-            return re.test(email.toString());
-        }())
+        const re = /\S+@\S+\.\S+/;
+        return re.test(email);
+
     } catch (err) {
         console.log(`Error validating Email : ${err}`);
+        return err;
     }
 
 }
