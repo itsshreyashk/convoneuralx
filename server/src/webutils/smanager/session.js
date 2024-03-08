@@ -7,13 +7,14 @@ export default class Session {
     }
     async addSession(username, password) {
         try {
-            const rKey = (await this.makeRandomSSID()).toString();
+            const rKey = (await this.makeRandomSSID());
+            console.log(rKey);
             this.users.push({
                 ssid: rKey,
                 username: username,
                 password: password,
             });
-            return { success: true, ssid: rKey };
+            return { success: true, ssid: rKey, message : "Session Added." };
         } catch (err) {
             console.log(`I've got an error ${err}`);
             return { success: false, message: err };

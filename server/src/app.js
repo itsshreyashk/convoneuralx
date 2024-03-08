@@ -131,12 +131,11 @@ app.post('/create', async (req, res) => {
 app.post('/authorize', async (req, res) => {
     const username = req.body.username.toString(); //username
     const password = req.body.password.toString(); //password    
-    console.log(username);
     if (await validate_usnm_pwd(username, password)) {
         const Check_User = await _User_Manager_.Check_User(username, password);
         if (Check_User.status === true) {
             //Generating Session Key.
-            const key = await _Session_Manager_.addSession(username, password).ssid.toString();
+            const key = ((await _Session_Manager_.addSession(username, password)).ssid).toString();
             if (key) {
                 (function (Check_User) {
                     res.status(200).json({
