@@ -1,8 +1,8 @@
 'use client'
 
-import React, { useEffect, useRef, useState } from 'react'
-import { useRouter } from 'next/navigation'
-import Props from './props'
+import React, { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Props from './props';
 import showError from '../errorpop';
 const Page = () => {
     const router = useRouter();
@@ -12,9 +12,7 @@ const Page = () => {
     const passwordRef = useRef<HTMLInputElement>(null);
     const ageRef = useRef<HTMLInputElement>(null);
     const emailRef = useRef<HTMLInputElement>(null);
-    const handleGoBack = () => {
-        router.back();
-    };
+    const handleGoBack = () => router.back();
     const handleSignUp = async () => {
         if (usernameRef && usernameRef.current && passwordRef && passwordRef.current && ageRef && ageRef.current && emailRef && emailRef.current) {
             const route = (await (await fetch('http://localhost:3000/api/getRoutes', {

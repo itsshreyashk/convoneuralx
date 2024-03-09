@@ -1,4 +1,6 @@
 import React from 'react'
+import Link from 'next/link'
+
 interface PropsProps {
     usernameRef: React.RefObject<any>,
     passwordRef: React.RefObject<any>,
@@ -37,7 +39,10 @@ const Props: React.FC<PropsProps> = ({ usernameRef, passwordRef, handleSignUp, p
                         </div>
                     </div>
                     <div className="pt-7 space-y-1">
-                        <button type="button" className='w-full text-center text-sm px-4 py-2 bg-blue-600 text-white rounded-full active:bg-blue-800' onClick={handleSignUp}>Sign Up</button>
+                        <Link href={'/sign/create/connect'}>
+                            <button type="button" className='w-full text-center text-sm px-4 py-2 bg-gray-100 text-gray-700 border rounded-full active:bg-gray-200 active:scale-[0.9] duration-200 prevent-highlight' onClick={handleSignUp}>Continue Setup</button>
+                        </Link>
+                        <button type="button" className='w-full text-center text-sm px-4 py-2 bg-blue-600 text-white rounded-full active:bg-blue-800 active:scale-[0.9] duration-200 prevent-highlight' onClick={handleSignUp}>Proceed</button>
                     </div>
                 </div>
             </div>

@@ -24,3 +24,7 @@
     -ms-user-select: none;
     user-select: none;
 }
+
+.prevent-highlight {
+    -webkit-tap-highlight-color: transparent !important;
+}
