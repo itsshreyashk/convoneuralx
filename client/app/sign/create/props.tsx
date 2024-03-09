@@ -13,6 +13,7 @@ interface PropsProps {
 const Props: React.FC<PropsProps> = ({ usernameRef, passwordRef, handleSignUp, passView, setPassView, ageRef, emailRef }) => {
     return (
         <>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
             <div className="flex justify-center py-[20vh]">
                 <div className="w-[80%] max-w-[350px] min-w-[max-content] border h-[max-content] rounded-xl px-4 py-2 backdrop-blur-xl">
                     <div className="w-full text-start space-y-2">
@@ -24,9 +25,19 @@ const Props: React.FC<PropsProps> = ({ usernameRef, passwordRef, handleSignUp, p
                             <label htmlFor="password" className='text-sm'>Create Password</label>
                             <div className="flex">
                                 <input type={`${passView}`} name="password" className="px-4 py-2 w-full border border-r-0 rounded-l-full outline-none text-sm" ref={passwordRef} />
-                                <button type="button" className='text-sm px-4 py-2 rounded-r-full bg-white border border-l-0' onClick={() => {
+                                <button type="button" className='text-sm px-4 py-2 rounded-r-full bg-white border border-l-0 flex' onClick={() => {
                                     (passView === 'password') ? `${setPassView('text')}` : `${setPassView('password')}`
-                                }}>{(passView === 'password') ? 'view' : 'hide'}</button>
+                                }}>{(passView === 'password') && (
+                                    <span className="material-symbols-outlined mt-4/5">
+                                        visibility
+                                    </span>
+                                )}
+                                    {(passView === 'text') && (
+                                        <span className="material-symbols-outlined mt-4/5">
+                                            visibility_off
+                                        </span>
+                                    )}
+                                </button>
                             </div>
                         </div>
                         <div className="space-y-0">
