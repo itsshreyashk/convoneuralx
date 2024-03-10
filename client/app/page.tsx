@@ -1,8 +1,13 @@
+'use client'
+
 import Link from "next/link";
 
 import React from 'react'
 
 const Home = () => {
+  if (localStorage.getItem('ssid') !== (NaN || '' || undefined || null)) {
+    location.href = '/home'
+  }
   return (
     <>
       <div className="w-screen flex fixed top-0 p-4">
