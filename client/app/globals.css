@@ -28,3 +28,9 @@
 .prevent-highlight {
     -webkit-tap-highlight-color: transparent !important;
 }
+
+@media only screen and (max-width: 768px) {
+    .make_responsive_displayname {
+        display: none !important;
+    }    
+}
