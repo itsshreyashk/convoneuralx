@@ -35,6 +35,18 @@ const Page: React.FC = () => {
                 </div>
             </nav>
             <Dashboard />
+            <div className="p-4">
+                <h1 className='font-bold'>Your Models</h1>
+                <div className="w-full text-center">
+                    <span className='text-sm text-gray-600'>No models to show currently</span>
+                </div>
+            </div>
+            <footer className="p-4 flex justify-center">
+                <div className="w-full space-y-2 p-4 bg-black">
+                    <a className='text-blue-800 text-sm cursor-pointer active:text-blue-600 active:scale-[0.9] transform duration-200' href=''>Explore Docs</a><br />
+                    <a className='text-blue-800 text-sm cursor-pointer active:text-blue-600 active:scale-[0.9] transform duration-200' href=''>Explore Codebase</a>
+                </div>
+            </footer>
         </>
     )
 }
