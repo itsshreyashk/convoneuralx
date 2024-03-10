@@ -1,5 +1,12 @@
 'use client'
+/*
+Integrate d3.js
 
+data vis.
+
+
+/api/etc
+*/
 import Link from "next/link";
 
 import React from 'react'
