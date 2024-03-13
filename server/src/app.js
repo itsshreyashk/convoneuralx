@@ -37,7 +37,6 @@ const test_email = (email) => {
     try {
         const re = /\S+@\S+\.\S+/;
         return re.test(email);
-
     } catch (err) {
         console.log(`Error validating Email : ${err}`);
         return err;
@@ -129,8 +128,8 @@ app.post('/create', async (req, res) => {
     }
 });
 app.post('/authorize', async (req, res) => {
-    const username = req.body.username.toString(); //username
-    const password = req.body.password.toString(); //password    
+    const username = req.body.username.toString(); //username [secured]
+    const password = req.body.password.toString(); //password [secured]
     if (await validate_usnm_pwd(username, password)) {
         const Check_User = await _User_Manager_.Check_User(username, password);
         if (Check_User.status === true) {
@@ -182,6 +181,7 @@ app.get('/health', async (req, res) => {
     }
 
 });
+
 server.listen(PORT, () => {
     console.log(`Listening on http://localhost${PORT}`);
 });
