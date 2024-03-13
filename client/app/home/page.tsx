@@ -1,10 +1,11 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Dashboard } from './props';
 import Link from 'next/link';
 const Page: React.FC = () => {
     const [dislplayName, setDisplayName] = useState("Unknown");
     const [picURL, setPicURL] = useState("");
+    const dialogRef = useRef<HTMLDivElement>(null);
     document.title = "Home";
     useEffect(() => {
         setDisplayName("Shreyash Kumar")
@@ -24,8 +25,18 @@ const Page: React.FC = () => {
                         </Link>
                     </div>
                     <div className="flex space-x-2">
-                        <span className='text-blue-600 text-sm py-3 font-bold hover:underline cursor-pointer make_responsive_displayname'>{dislplayName}</span>
-                        <img src={picURL} alt="profile" className='rounded-full w-11 bg-white disable_select' />
+                        <Link href={'/profile'} className='py-1 mt-1'>
+                            <span className='text-blue-600 text-sm font-bold hover:underline cursor-pointer make_responsive_displayname'>{dislplayName}</span> {/*Click and toggle*/}
+                        </Link>
+                        <img src={picURL} alt="profile" className='rounded-full w-11 bg-white disable_select active:border-blue-600 border' onClick={function () {
+                            if (dialogRef && dialogRef.current) {
+                                if (dialogRef.current.hidden === false) {
+                                    dialogRef.current.hidden = true;
+                                } else {
+                                    dialogRef.current.hidden = false;
+                                }
+                            }
+                        }} />
                         <div className="h-11 w-11 flex items-center justify-center">
                             <span className="material-symbols-outlined cursor-pointer hover:border-gray-600 border active:opacity-70 disable_select active:bg-gray-400">
                                 add
@@ -59,6 +70,24 @@ const Page: React.FC = () => {
                     <a className='text-blue-800 text-sm cursor-pointer active:text-blue-600 active:scale-[0.9] transform duration-200' href=''>View Usage schemes</a>
                 </div>
             </footer>
+            <div className="fixed right-20 p-2 top-14 bg-[transparent] backdrop-blur-xl border rounded-3xl" ref={dialogRef} hidden>
+                <div className="px-20 text-center">
+                    <img src={picURL} alt="profile_pic" className='rounded-full w-20 disable_select' />
+
+                </div>
+                <div className="w-full p-1 flex">
+                    <Link href={'/settings'} className='w-full'>
+                        <button type="button" className='w-full px-4 py-2 border hover:bg-gray-200 duration-200 cursor-pointer rounded-l-full active:bg-gray-400'><span className="material-symbols-outlined p-4 text-gray-600">
+                            settings
+                        </span></button>
+                    </Link>
+                    <Link href={'/logout'} className='w-full'>
+                        <button type="button" className='w-full px-4 py-2 border hover:bg-gray-200 duration-200 cursor-pointer rounded-r-full active:bg-gray-400'><span className="material-symbols-outlined p-4 text-gray-600">
+                            logout
+                        </span></button>
+                    </Link>
+                </div>
+            </div>
         </>
     )
 }
