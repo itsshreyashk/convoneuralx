@@ -3,16 +3,16 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Dashboard } from './props';
 import Link from 'next/link';
 const Page: React.FC = () => {
-    const [dislplayName, setDisplayName] = useState("Unknown");
+    const [username, set_username] = useState("Unknown");
     const [picURL, setPicURL] = useState("");
     const dialogRef = useRef<HTMLDivElement>(null);
     document.title = "Home";
     useEffect(() => {
-        setDisplayName("Shreyash Kumar")
+        set_username("Shreyash Kumar")
         setPicURL("https://avatars.githubusercontent.com/u/147302693?v=4");
         return () => {
         }
-    }, [dislplayName, picURL])
+    }, [username, picURL])
 
     return (
         <>
@@ -26,7 +26,7 @@ const Page: React.FC = () => {
                     </div>
                     <div className="flex space-x-2">
                         <Link href={'/profile'} className='py-1 mt-1'>
-                            <span className='text-blue-600 text-sm font-bold hover:underline cursor-pointer make_responsive_displayname'>{dislplayName}</span> {/*Click and toggle*/}
+                            <span className='text-blue-600 text-sm font-bold hover:underline cursor-pointer make_responsive_displayname'>{username}</span> {/*Click and toggle*/}
                         </Link>
                         <img src={picURL} alt="profile" className='rounded-full w-11 bg-white disable_select active:border-blue-600 border' onClick={function () {
                             if (dialogRef && dialogRef.current) {
@@ -91,5 +91,4 @@ const Page: React.FC = () => {
         </>
     )
 }
-
 export default Page;
