@@ -9,7 +9,7 @@ const userSchema = new Schema({
     personal: {
         age: Number,
         email: String,
-        phone : phone,
+        phone : String,
     }
 });
 const User = new mongoose.model('Users', userSchema);
