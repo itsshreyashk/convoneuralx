@@ -12,9 +12,10 @@ const Page = () => {
     const passwordRef = useRef<HTMLInputElement>(null);
     const ageRef = useRef<HTMLInputElement>(null);
     const emailRef = useRef<HTMLInputElement>(null);
+    const phoneRef = useRef<HTMLInputElement>(null);
     const handleGoBack = () => router.back();
     const handleSignUp = async () => {
-        if (usernameRef && usernameRef.current && passwordRef && passwordRef.current && ageRef && ageRef.current && emailRef && emailRef.current) {
+        if (usernameRef && usernameRef.current && passwordRef && passwordRef.current && ageRef && ageRef.current && emailRef && emailRef.current && phoneRef && phoneRef.current) {
             const route = (await (await fetch('http://localhost:3000/api/getRoutes', {
                 method: 'POST',
                 headers: {
@@ -28,6 +29,7 @@ const Page = () => {
             const given_password: string = passwordRef.current.value;
             const given_age: number = parseInt(ageRef.current.value);
             const given_email: string = emailRef.current.value;
+            const given_phone: string = phoneRef.current.value;
             if ((given_username && given_password && given_age && given_email) !== (null || '' || NaN)) {
                 const Response: any = (await (await fetch(route, {
                     method: 'POST',
@@ -39,6 +41,7 @@ const Page = () => {
                         password: given_password,
                         age: given_age,
                         email: given_email,
+                        phone : given_phone,
                     }),
                 })).json());
 
@@ -73,7 +76,7 @@ const Page = () => {
     }, [])
     return (
         <>
-            <Props usernameRef={usernameRef} passwordRef={passwordRef} handleSignUp={handleSignUp} passView={passView} setPassView={setPassView} ageRef={ageRef} emailRef={emailRef} />
+            <Props usernameRef={usernameRef} passwordRef={passwordRef} handleSignUp={handleSignUp} passView={passView} setPassView={setPassView} ageRef={ageRef} emailRef={emailRef} phoneRef={phoneRef} />
             <div className="absolute top-4 left-4">
                 <span className="text-blue-800 text-lg font-bold cursor-pointer hover:underline hover:text-blue-800 text-sm" onClick={handleGoBack}>{'Back'}</span>
             </div>

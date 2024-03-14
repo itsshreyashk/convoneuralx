@@ -13,11 +13,11 @@ const Settings: React.FC = () => {
     useEffect(() => {
         set_username("Shreyash Kumar");
         setPicURL("https://avatars.githubusercontent.com/u/147302693?v=4");
-        setRenderArray((prevArray)=> ([
+        setRenderArray((prevArray) => ([
             ...prevArray,
             {
-                field : "Username",
-                entry : username
+                field: "Username",
+                entry: username
             }
         ]))
         return () => {
@@ -32,9 +32,8 @@ const Settings: React.FC = () => {
             <nav className='top-0 flex w-full border-b bg-gray-100'>
                 <div className="w-full"></div>
                 <div className="w-full px-4 py-2 flex justify-end">
-                    <Link href="/">
-                        <h1 className="text-gray-800 font-bold py-2 disable_select flex">Convoneuralx <span className="material-symbols-outlined">chevron_right</span><span className="material-symbols-outlined text-sm text-gray-600">home</span><span className="material-symbols-outlined">chevron_right</span><span className="material-symbols-outlined text-sm text-gray-600">settings</span></h1>
-                    </Link>
+                    <h1 className="text-gray-800 font-bold py-2 disable_select flex">Convoneuralx <span className="material-symbols-outlined">chevron_right</span><Link href={'/home'}><span className="material-symbols-outlined text-sm text-gray-600">home</span></Link><span className="material-symbols-outlined">chevron_right</span><Link href={'/settings'}><span className="material-symbols-outlined text-sm text-gray-600">settings</span></Link></h1>
+
                 </div>
             </nav>
             <div className="p-1 flex justify-center">

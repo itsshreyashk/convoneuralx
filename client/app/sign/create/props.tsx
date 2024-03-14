@@ -9,8 +9,9 @@ interface PropsProps {
     setPassView: any,
     ageRef: React.RefObject<any>,
     emailRef: React.RefObject<any>,
+    phoneRef : React.RefObject<any>,
 }
-const Props: React.FC<PropsProps> = ({ usernameRef, passwordRef, handleSignUp, passView, setPassView, ageRef, emailRef }) => {
+const Props: React.FC<PropsProps> = ({ usernameRef, passwordRef, handleSignUp, passView, setPassView, ageRef, emailRef,phoneRef }) => {
     return (
         <>
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
@@ -43,6 +44,10 @@ const Props: React.FC<PropsProps> = ({ usernameRef, passwordRef, handleSignUp, p
                         <div className="space-y-0">
                             <label htmlFor="email" className='text-sm'>Email</label>
                             <input type="email" name='email' className='px-4 py-2 w-full border rounded-full outline-none text-sm' ref={emailRef} />
+                        </div>
+                        <div className="space-y-0">
+                            <label htmlFor="phone" className='text-sm'>Phone</label>
+                            <input type="number" name='phone' className='px-4 py-2 w-full border rounded-full outline-none text-sm' ref={phoneRef} />
                         </div>
                         <div className="space-y-0">
                             <label htmlFor="age" className='text-sm'>Age</label>

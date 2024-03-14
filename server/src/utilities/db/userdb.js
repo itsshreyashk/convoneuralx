@@ -9,6 +9,7 @@ const userSchema = new Schema({
     personal: {
         age: Number,
         email: String,
+        phone : phone,
     }
 });
 const User = new mongoose.model('Users', userSchema);
@@ -59,6 +60,15 @@ export default class User_Manager {
             return !!existingUser; // Returns true if user exists, false otherwise
         } catch (err) {
             console.log(`Error checking user existence: ${err}`);
+            return { status: false, message: err, code: 500 }; // Return false in case of an error
+        }
+    }
+    async getUserData(username) {
+        try {
+            const existingUser = await User.findOne({ username: username });
+            return existingUser;
+        } catch (err) {
+            console.log(`Error getting user: ${err}`);
             return { status: false, message: err, code: 500 }; // Return false in case of an error
         }
     }

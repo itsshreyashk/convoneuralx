@@ -1,6 +1,6 @@
 //file imports
-import Session from './webutils/smanager/session.js';
-import User_Manager from './webutils/db/userdb.js';
+import Session from './utilities/smanager/session.js';
+import User_Manager from './utilities/db/userdb.js';
 //modules
 import dotenv from 'dotenv';
 import express from 'express';
@@ -57,7 +57,7 @@ app.post('/create', async (req, res) => {
     const password = req.body.password.toString();
     const age = parseInt(req.body.age);
     const email = req.body.email.toString();
-
+    const phone = req.body.phone.toString();
 
     if (await validate_usnm_pwd(username, password)) {
         if (test_email(email)) {
@@ -76,11 +76,11 @@ app.post('/create', async (req, res) => {
                         username: username, password: password, personal: {
                             age: age,
                             email: email,
+                            phone : phone,
                         }
                     }); // Creating User.
                     console.log('Added User.');
                     if (Create_User.status === true) {
-                        console.log('Creation status true.');
                         //User successfully created now return a session key.
                         try {
                             const Add_Session = await _Session_Manager_.addSession(username, password);
@@ -181,7 +181,15 @@ app.get('/health', async (req, res) => {
     }
 
 });
-
+app.get('/users/:username', async (req, res) => {
+    const username = req.params.username;
+    const userData = await _User_Manager_.getUserData(username);
+    res.json({
+        username : userData.username,
+        age : userData.personal.age,
+        email : userData.personal.email,
+    })
+})
 server.listen(PORT, () => {
     console.log(`Listening on http://localhost${PORT}`);
 });
