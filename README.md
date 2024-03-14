@@ -10,7 +10,7 @@
 - Clone the repository
 - Navigate to `/client` & `/server` and install the dependencies.
 > Note : /client works on NextJS 14. /server remains on yarn and node_modules.
-- Run the client by running `npm run dev` and run the server by running `yarn start or npm start` in the terminal
+- Run the client by running `yarn dev` and run the server by running `yarn start` in the terminal
 > Your stuft is setup, enjoy.
 
 ## End notes?
