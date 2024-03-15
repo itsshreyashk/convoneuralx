@@ -15,3 +15,4 @@
 
 ## End notes?
 > Connect to the central mongodb server.
+> More features like model chaining coming!
