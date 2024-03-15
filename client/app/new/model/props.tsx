@@ -2,8 +2,9 @@ import React from 'react'
 
 interface Navigator_Props {
     actions_array: Array<any>,
+    set_current_view: React.Dispatch<React.SetStateAction<any>>,
 }
-export const Navigator: React.FC<Navigator_Props> = ({ actions_array }) => {
+export const Navigator: React.FC<Navigator_Props> = ({ actions_array, set_current_view }) => {
     return (
         <>
             {/* Links */}
@@ -14,7 +15,7 @@ export const Navigator: React.FC<Navigator_Props> = ({ actions_array }) => {
                     actions_array.map((element, index) => (
                         <>
                             <div className="p-2">
-                                <span className='text-sm font-bold lato-bold cursor-pointer hover:text-blue-600 duration-200'>{element.name}</span>
+                                <span className='text-sm font-bold lato-bold cursor-pointer hover:text-blue-600 duration-200' onClick={() => { set_current_view(element.name) }}>{element.name}</span>
                             </div>
                             {index !== actions_array.length - 1 && ( // Check if it's not the last element
                                 <span className="material-symbols-outlined pt-2 text-gray-700">
@@ -30,3 +31,14 @@ export const Navigator: React.FC<Navigator_Props> = ({ actions_array }) => {
     )
 }
 
+export const General: React.FC = () => {
+    return (<>General</>)
+}
+
+export const Configuration: React.FC = () => {
+    return (<>Configuration</>)
+}
+
+export const Deploy: React.FC = () => {
+    return (<>Deploy</>)
+}
