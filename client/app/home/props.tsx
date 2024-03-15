@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Link from 'next/link'
 const Dashboard: React.FC = () => {
 
   return (
@@ -9,7 +9,9 @@ const Dashboard: React.FC = () => {
       </div>
       <div className="p-4 flex justify-center">
         <div className="w-full max-w-[400px] space-y-2">
+          <Link href={'/new/model'}>
           <button type="button" className='px-4 py-2 text-center w-full border-dotted border text-sm active:bg-gray-400 duration-200 active:scale-[0.9] transform font-bold border-gray-800 disable_select'>Create new model</button>
+          </Link>
           <button type="button" className='px-4 py-2 text-center w-full border-dotted border text-sm active:bg-gray-400 duration-200 active:scale-[0.9] transform font-bold border-gray-800 disable_select'>Configure active models</button>
           <button type="button" className='px-4 py-2 text-center w-full border-dotted border text-sm active:bg-gray-400 duration-200 active:scale-[0.9] transform font-bold border-gray-800 disable_select'>Explore marketplace</button>
         </div>

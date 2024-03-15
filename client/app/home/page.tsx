@@ -73,7 +73,6 @@ const Page: React.FC = () => {
             <div className="fixed right-20 p-2 top-14 bg-[transparent] backdrop-blur-xl border rounded-3xl" ref={dialogRef} hidden>
                 <div className="px-20 text-center">
                     <img src={picURL} alt="profile_pic" className='rounded-full w-20 disable_select' />
-
                 </div>
                 <div className="w-full p-1 flex">
                     <Link href={'/settings'} className='w-full'>

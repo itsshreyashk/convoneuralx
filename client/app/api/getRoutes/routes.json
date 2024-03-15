@@ -1,4 +1,5 @@
 {
-    "auth" : "http://localhost:3001/authorize",
-    "create" : "http://localhost:3001/create"
+    "auth" : "http://localhost:3001/authorize/user",
+    "create" : "http://localhost:3001/create/user",
+    "new_model" : "http://localhost:3001/create/model"
 }

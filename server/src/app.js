@@ -19,6 +19,16 @@ const io = new Server(server);
 const _Session_Manager_ = new Session();
 const _User_Manager_ = new User_Manager();
 
+
+const get_session_data = async (ssid) => {
+    try {
+        return _Session_Manager_.getSessionData(ssid);
+    } catch (err) {
+        console.log(`Error : ${err}`);
+        return null;
+    }
+}
+
 try {
     (function () {
         app.use(cors({
@@ -52,7 +62,7 @@ const validate_usnm_pwd = async (username, password) => {
 const validate_age = async (age) => {
     return (parseInt(age) <= 0 && parseInt(age) <= 150);
 }
-app.post('/create', async (req, res) => {
+app.post('/create/user', async (req, res) => {
     const username = req.body.username.toString();
     const password = req.body.password.toString();
     const age = parseInt(req.body.age);
@@ -76,7 +86,7 @@ app.post('/create', async (req, res) => {
                         username: username, password: password, personal: {
                             age: age,
                             email: email,
-                            phone : phone,
+                            phone: phone,
                         }
                     }); // Creating User.
                     console.log('Added User.');
@@ -127,7 +137,7 @@ app.post('/create', async (req, res) => {
         });
     }
 });
-app.post('/authorize', async (req, res) => {
+app.post('/authorize/user', async (req, res) => {
     const username = req.body.username.toString(); //username [secured]
     const password = req.body.password.toString(); //password [secured]
     if (await validate_usnm_pwd(username, password)) {
@@ -185,10 +195,13 @@ app.get('/users/:username', async (req, res) => {
     const username = req.params.username;
     const userData = await _User_Manager_.getUserData(username);
     res.json({
-        username : userData.username,
-        age : userData.personal.age,
-        email : userData.personal.email,
+        username: userData.username,
+        age: userData.personal.age,
+        email: userData.personal.email,
     })
+});
+app.post('/create/model', async (req, res) => {
+    res.send('OK');
 })
 server.listen(PORT, () => {
     console.log(`Listening on http://localhost${PORT}`);
