@@ -54,6 +54,8 @@ export const General: React.FC = () => {
                             </div>
                             <input type="text" name="model_name" id="model_name" className='text-xl w-full text-gray-900 border rounded-r-full focus:outline-blue-600 focus:outline-20 px-4 py-2' placeholder='Model Name' />
                         </div>
+                        <label htmlFor="model_description">Model Description</label>
+                        <textarea name="model_description" id="model_description" cols={30} rows={10}></textarea>
                     </div>
                 </div>
             </div>
