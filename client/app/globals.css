@@ -161,3 +161,7 @@
     font-weight: 900;
     font-style: normal;
 }
+
+.no_scrollbar::-webkit-scrollbar {
+    display: hidden;
+}

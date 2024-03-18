@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { Navigator, General, Configuration, Deploy } from './props'
 
@@ -13,6 +13,12 @@ const Page: React.FC = () => {
         router.back();
     };
     const Actions: Array<any> = [{ name: "General" }, { name: "Configuration" }, { name: "Deploy" }]
+    useEffect(() => {
+        document.title = "New Model";
+        return () => {
+        }
+    }, [])
+
     return (
         <>
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
