@@ -52,7 +52,7 @@ export const General: React.FC = () => {
                             <div className="border text-gray-600 px-4 py-2 w-[max-content] text-xl rounded-l-full">
                                 itsshreyashk/
                             </div>
-                            <input type="text" name="model_name" id="model_name" className='text-xl w-full text-gray-900 border rounded-r-full focus:outline-blue-600 focus:outline-20 focus:ring-1 focus:ring-blue-600 px-4 py-2' placeholder='Model Name' />
+                            <input type="text" name="model_name" id="model_name" className='text-xl w-full text-gray-900 border rounded-r-full focus:outline-blue-600 focus:outline-20 px-4 py-2' placeholder='Model Name' />
                         </div>
                     </div>
                 </div>
