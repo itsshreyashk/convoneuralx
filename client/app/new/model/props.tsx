@@ -63,7 +63,7 @@ export const General: React.FC<General_Structure> = ({set_chars_description, cha
                         <div className="my-2 space-y-2">
                             <div className="w-full flex">
                                 <div className="w-full text-start">
-                                    <label htmlFor="model_description" className='my-4 text-gray-600 text-sm'>Model Description</label><br />
+                                    <label htmlFor="model_description" className='my-4 px-4 text-gray-800 text-sm font-bold'>Model Description</label><br />
                                 </div>
                                 <div className="w-full text-end">
                                     <label htmlFor="model_description" className={`my-4 text-${(chars_description <= minimum_description_character_length-1) ? "red" : "green"}-600 text-sm font-bold`}>{chars_description}/{max_description_character_length}</label><br />
