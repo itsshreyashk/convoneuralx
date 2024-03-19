@@ -13,7 +13,7 @@ export const Navigator: React.FC<Navigator_Props> = ({ actions_array, set_curren
             <div className="fixed top-5 p-1 bg-[transparent] backdrop-blur-[3px] border-4 rounded-[10px] right-4 flex justify-between min-w-[max-content] max-w-[600px] shadow-xl">
                 {
                     actions_array.map((element, index) => (
-                        <>
+                        <React.Fragment>
                             <div className="p-2" key={element.id}>
                                 <span className='text-sm font-bold lato-bold cursor-pointer hover:text-blue-600 duration-200' onClick={() => { set_current_view(element.name) }}>{element.name}</span>
                             </div>
@@ -22,7 +22,7 @@ export const Navigator: React.FC<Navigator_Props> = ({ actions_array, set_curren
                                     chevron_right
                                 </span>
                             )}
-                        </>
+                        </React.Fragment>
                     ))
 
                 }
