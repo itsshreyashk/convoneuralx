@@ -13,8 +13,20 @@ const Page: React.FC = () => {
         router.back();
     };
     const Actions: Array<any> = [{ name: "General" }, { name: "Configuration" }, { name: "Deploy" }]
+    
+    
+    
+    
+    
+    //General
+    const [chars_description, set_chars_description] = useState<number>(0);
+
     useEffect(() => {
         document.title = "New Model";
+
+        //General
+        //Configuration
+        //Deploy
         return () => {
         }
     }, [])
@@ -27,7 +39,7 @@ const Page: React.FC = () => {
                 <span className="text-blue-800 text-lg font-bold cursor-pointer hover:underline hover:text-blue-800 text-sm" onClick={handleGoBack}>{'Back'}</span>
             </div>
             {
-                (current_view === 'General') && (<General />)
+                (current_view === 'General') && (<General set_chars_description={set_chars_description} chars_description={chars_description}/>)
             }
             {
                 (current_view === 'Configuration') && (<Configuration />)

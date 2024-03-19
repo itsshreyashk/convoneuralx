@@ -30,8 +30,12 @@ export const Navigator: React.FC<Navigator_Props> = ({ actions_array, set_curren
         </>
     )
 }
-
-export const General: React.FC = () => {
+interface General_Structure {
+    set_chars_description : React.Dispatch<React.SetStateAction<number>>,
+    chars_description : any,
+}
+export const General: React.FC<General_Structure> = ({set_chars_description, chars_description}) => {
+    const minimum_description_character_length = 100;
     return (<>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,100,1,200" />
         <div className="flex justify-center">
@@ -52,10 +56,21 @@ export const General: React.FC = () => {
                             <div className="border text-gray-600 px-4 py-2 w-[max-content] text-xl rounded-l-full">
                                 itsshreyashk/
                             </div>
-                            <input type="text" name="model_name" id="model_name" className='text-xl w-full text-gray-900 border rounded-r-full focus:outline-blue-600 focus:outline-20 px-4 py-2' placeholder='Model Name' />
+                            <input type="text" name="model_name" id="model_name" className='text-xl w-full text-gray-900 border rounded-r-full focus:outline-blue-600 focus:outline-20 px-4 py-2 font-bold' placeholder='Model Name' />
                         </div>
-                        <label htmlFor="model_description">Model Description</label>
-                        <textarea name="model_description" id="model_description" cols={30} rows={10}></textarea>
+                        <div className="my-2 space-y-2">
+                            <div className="w-full flex">
+                                <div className="w-full text-start">
+                                    <label htmlFor="model_description" className='my-4 text-gray-600 text-sm'>Model Description</label><br />
+                                </div>
+                                <div className="w-full text-end">
+                                    <label htmlFor="model_description" className={`my-4 text-${(chars_description >= minimum_description_character_length) ? 'green' : 'red'}-600 text-sm font-bold`}>{chars_description}/{minimum_description_character_length}</label><br />
+                                </div>
+                            </div>
+                            <textarea name="model_description" id="model_description" cols={30} rows={10} className='w-full text-gray-800 px-4 py-2 rounded-xl outline-none focus:outline-blue-600' onChange={function (e){
+                                set_chars_description(e.target.value.length);
+                            }}></textarea>
+                        </div>
                     </div>
                 </div>
             </div>
