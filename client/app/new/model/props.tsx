@@ -35,7 +35,8 @@ interface General_Structure {
     chars_description : any
 }
 export const General: React.FC<General_Structure> = ({set_chars_description, chars_description}) => {
-    const minimum_description_character_length: number = 100;    
+    const minimum_description_character_length: number = 100;   
+    const max_description_character_length: number = 1000; 
     return (
     <>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,100,1,200" />
@@ -65,12 +66,12 @@ export const General: React.FC<General_Structure> = ({set_chars_description, cha
                                     <label htmlFor="model_description" className='my-4 text-gray-600 text-sm'>Model Description</label><br />
                                 </div>
                                 <div className="w-full text-end">
-                                    <label htmlFor="model_description" className={`my-4 text-${(chars_description <= minimum_description_character_length) ? "red" : "green"}-600 text-sm font-bold`}>{chars_description}/{minimum_description_character_length}</label><br />
+                                    <label htmlFor="model_description" className={`my-4 ${(chars_description <= minimum_description_character_length-1) ? "text-red-600" : "text-green-600"} text-sm font-bold`}>{chars_description}/{max_description_character_length}</label><br />
                                 </div>
                             </div>
                             <textarea name="model_description" id="model_description" cols={30} rows={10} className='w-full text-gray-800 px-4 py-2 rounded-xl outline-none focus:outline-blue-600' onChange={(e : any)=> {
                                 set_chars_description(e.target.value.length);                                                                
-                            }}></textarea>
+                            }} minLength={minimum_description_character_length}></textarea>
                         </div>
                     </div>
                 </div>
