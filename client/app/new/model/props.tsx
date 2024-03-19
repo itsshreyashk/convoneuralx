@@ -66,7 +66,7 @@ export const General: React.FC<General_Structure> = ({set_chars_description, cha
                                     <label htmlFor="model_description" className='my-4 text-gray-600 text-sm'>Model Description</label><br />
                                 </div>
                                 <div className="w-full text-end">
-                                    <label htmlFor="model_description" className={`my-4 ${(chars_description <= minimum_description_character_length-1) ? "text-red-600" : "text-green-600"} text-sm font-bold`}>{chars_description}/{max_description_character_length}</label><br />
+                                    <label htmlFor="model_description" className={`my-4 text-${(chars_description <= minimum_description_character_length-1) ? "red" : "green"}-600 text-sm font-bold`}>{chars_description}/{max_description_character_length}</label><br />
                                 </div>
                             </div>
                             <textarea name="model_description" id="model_description" cols={30} rows={10} className='w-full text-gray-800 px-4 py-2 rounded-xl outline-none focus:outline-blue-600' onChange={(e : any)=> {
