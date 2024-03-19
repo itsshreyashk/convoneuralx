@@ -28,11 +28,11 @@ const get_session_data = async (ssid) => {
         return null;
     }
 }
-
+const ALLOWED_ORIGINS = process.env.ALLOWED_ORIGINS;
 try {
     (function () {
         app.use(cors({
-            origin: process.env.ALLOWED_ORIGINS.split(','),
+            origin: ALLOWED_ORIGINS
         }));
         app.use(express.json());
     }())
@@ -40,6 +40,7 @@ try {
 } catch (err) {
     console.log("Error setting middleware");
 }
+console.log(typeof (process.env.ALLOWED_ORIGINS));
 
 const test_email = (email) => {
     //testing function
@@ -193,12 +194,21 @@ app.get('/health', async (req, res) => {
 });
 app.get('/users/:username', async (req, res) => {
     const username = req.params.username;
+
     const userData = await _User_Manager_.getUserData(username);
-    res.json({
-        username: userData.username,
-        age: userData.personal.age,
-        email: userData.personal.email,
-    })
+    if (userData) {
+        res.status(200).json({
+            username: userData.username,
+            age: userData.personal.age,
+            email: userData.personal.email,
+        })
+    } else {
+        res.json({
+            status: 500,
+            message: "User not found",
+        })
+    }
+
 });
 app.post('/create/model', async (req, res) => {
     res.send('OK');
