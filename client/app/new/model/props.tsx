@@ -10,12 +10,12 @@ export const Navigator: React.FC<Navigator_Props> = ({ actions_array, set_curren
             {/* Links */}
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
             {/* Links End */}
-            <div className="fixed top-5 p-1 bg-[transparent] backdrop-blur-[3px] border-4 rounded-[10px] right-4 flex justify-between min-w-[max-content] max-w-[600px] shadow-xl">
+            <div className="fixed top-5 p-1 bg-gray-600 border-4 rounded-full right-4 flex justify-between min-w-[max-content] max-w-[600px] shadow-xl">
                 {
                     actions_array.map((element, index) => (
                         <React.Fragment>
                             <div className="p-2" key={element.id}>
-                                <span className='text-sm font-bold lato-bold cursor-pointer hover:text-blue-600 duration-200' onClick={() => { set_current_view(element.name) }}>{element.name}</span>
+                                <span className='text-sm font-bold lato-bold text-white cursor-pointer hover:text-blue-600 duration-200' onClick={() => { set_current_view(element.name) }}>{element.name}</span>
                             </div>
                             {index !== actions_array.length - 1 && ( // Check if it's not the last element
                                 <span className="material-symbols-outlined pt-2 text-gray-700">

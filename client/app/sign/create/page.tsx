@@ -49,8 +49,9 @@ const Page = () => {
 
 
                 if (Response.status === 200) {
-                    const ssid = Response.ssid; //Session ID.
+                    const ssid : string = Response.ssid; //Session ID.
                     localStorage.setItem('ssid', ssid);
+                    location.href = '/home';
                 } else {
                     console.log("Failure.");
                     showError(Response.message.toString(), set_error_message, 3000);

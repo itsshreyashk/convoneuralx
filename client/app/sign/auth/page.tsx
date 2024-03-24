@@ -36,8 +36,8 @@ const Page = () => {
             })).json();
             if (Response.status === 200) {
                 //Good to go
-                console.log(Response.key);
-                
+                localStorage.setItem("ssid", Response.key);
+                location.href = '/home';
             } else {
                 //Display error.
                 console.log(`Error. ${Response.message}`);
