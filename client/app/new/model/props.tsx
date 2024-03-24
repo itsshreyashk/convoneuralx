@@ -35,8 +35,9 @@ export const Navigator: React.FC<Navigator_Props> = ({ actions_array, set_curren
 interface General_Structure {
     set_chars_description: React.Dispatch<React.SetStateAction<number>>,
     chars_description: any,
+    set_current_view: React.Dispatch<React.SetStateAction<any>>,
 }
-export const General: React.FC<General_Structure> = ({ set_chars_description, chars_description }) => {
+export const General: React.FC<General_Structure> = ({ set_chars_description, chars_description, set_current_view }) => {
     const minimum_description_character_length: number = 100;
     const max_description_character_length: number = 1000;
     return (
@@ -94,16 +95,22 @@ export const General: React.FC<General_Structure> = ({ set_chars_description, ch
                         </div>
                     </div>
                     <div className="w-full text-end py-2 px-4">
-                        <button type="button" aria-label='Proceed' aria-expanded={true} aria-disabled={true} className='px-4 py-2 rounded-xl font-bold text-white bg-green-600 active:bg-green-800 active:outline-green-600 outline-4 outline'>Proceed</button>
+                        <button type="button" aria-label='Proceed' aria-expanded={true} aria-disabled={true} className='px-4 py-2 rounded-xl font-bold text-white bg-green-600 active:bg-green-800 active:outline-green-600 outline-4 outline' onClick={()=> {
+                            set_current_view('Configuration')
+                        }}>Proceed</button>
                     </div>
                 </div>
 
             </div>
         </>)
 }
+interface Configuration_Structure {
+    set_current_view: React.Dispatch<React.SetStateAction<any>>,
 
+}
 export const Configuration: React.FC = () => {
-    return (<>Configuration</>)
+    return (<>
+    </>)
 }
 
 export const Deploy: React.FC = () => {
