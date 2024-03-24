@@ -18,7 +18,7 @@ export const Navigator: React.FC<Navigator_Props> = ({ actions_array, set_curren
                                 <span className='text-sm font-bold lato-bold text-white cursor-pointer hover:text-blue-600 duration-200' onClick={() => { set_current_view(element.name) }}>{element.name}</span>
                             </div>
                             {index !== actions_array.length - 1 && ( // Check if it's not the last element
-                                <span className="material-symbols-outlined pt-2 text-gray-700">
+                                <span className="material-symbols-outlined pt-2 text-gray-300">
                                     chevron_right
                                 </span>
                             )}
@@ -55,10 +55,10 @@ export const General: React.FC<General_Structure> = ({ set_chars_description, ch
                         <div className="">
                             <label htmlFor="model_name" className='text-gray-900 text-sm px-4 font-bold'>Model Name</label><br />
                             <div className="flex">
-                                <div className="border font-bold text-gray-600 px-4 py-2 w-[max-content] text-xl rounded-l-full">
+                                <div className="border-4 border-r-0 font-bold text-gray-600 px-4 py-2 w-[max-content] text-xl rounded-l-full">
                                     itsshreyashk/
                                 </div>
-                                <input type="text" name="model_name" id="model_name" className='text-xl w-full text-gray-900 border rounded-r-full focus:outline-blue-600 focus:outline-20 px-4 py-2 font-bold' placeholder='Model Name' />
+                                <input type="text" name="model_name" id="model_name" className='text-xl w-full text-gray-900 border-4 rounded-r-full focus:border-blue-600 outline-none px-4 py-2 font-bold' placeholder='Model Name' />
                             </div>
                             <div className="my-2 space-y-2">
                                 <div className="w-full flex">
@@ -69,15 +69,16 @@ export const General: React.FC<General_Structure> = ({ set_chars_description, ch
                                         <label htmlFor="model_description" className={`my-4 text-${(chars_description <= minimum_description_character_length - 1) ? "red" : "green"}-600 text-sm font-bold`}>{chars_description}/{max_description_character_length}</label><br />
                                     </div>
                                 </div>
-                                <textarea name="model_description" id="model_description" cols={30} rows={10} className='w-full text-gray-800 px-4 py-2 rounded-xl outline-none focus:outline-blue-600' onChange={(e: any) => {
+                                <textarea name="model_description" id="model_description" cols={30} rows={10} className='w-full text-gray-800 px-4 py-2 rounded-xl outline-none border-4 focus:border-blue-600' onChange={(e: any) => {
                                     set_chars_description(e.target.value.length);
                                 }} minLength={minimum_description_character_length}></textarea>
+                                <span className='text-gray-600 text-sm p-2 font-bold'>Use <a className='text-blue-600 cursor-pointer' href={`https://www.markdownguide.org/getting-started/`}>markdown</a> to format your text.</span>
                             </div>
                             <div className="flex">
-                                <div className="border font-bold text-gray-600 px-4 py-2 w-[max-content] text-xl rounded-l-full">
+                                <div className="border-4 border-r-0 font-bold text-gray-600 px-4 py-2 w-[max-content] text-xl rounded-l-full">
                                     Image/
                                 </div>
-                                <input type="text" name="model_name" id="model_name" className='text-xl w-full text-gray-900 border rounded-r-full focus:outline-blue-600 focus:outline-20 px-4 py-2 font-bold' placeholder='Model Image URL' />
+                                <input type="text" name="model_name" id="model_name" className='text-xl w-full text-gray-900 border-4 rounded-r-full focus:border-blue-600 outline-none px-4 py-2 font-bold' placeholder='Model Image URL' />
                             </div>
                         </div>
                     </div>
