@@ -1,4 +1,6 @@
 import React from 'react'
+import ReactMarkdown from 'react-markdown';
+
 
 interface Navigator_Props {
     actions_array: Array<any>,
@@ -32,7 +34,7 @@ export const Navigator: React.FC<Navigator_Props> = ({ actions_array, set_curren
 }
 interface General_Structure {
     set_chars_description: React.Dispatch<React.SetStateAction<number>>,
-    chars_description: any
+    chars_description: any,
 }
 export const General: React.FC<General_Structure> = ({ set_chars_description, chars_description }) => {
     const minimum_description_character_length: number = 100;
@@ -69,9 +71,18 @@ export const General: React.FC<General_Structure> = ({ set_chars_description, ch
                                         <label htmlFor="model_description" className={`my-4 text-${(chars_description <= minimum_description_character_length - 1) ? "red" : "green"}-600 text-sm font-bold`}>{chars_description}/{max_description_character_length}</label><br />
                                     </div>
                                 </div>
-                                <textarea name="model_description" id="model_description" cols={30} rows={10} className='w-full text-gray-800 px-4 py-2 rounded-xl outline-none border-4 focus:border-blue-600' onChange={(e: any) => {
-                                    set_chars_description(e.target.value.length);
-                                }} minLength={minimum_description_character_length}></textarea>
+                                <textarea
+                                    name="model_description"
+                                    id="model_description"
+                                    cols={30}
+                                    rows={10}
+                                    className='w-full text-gray-800 px-4 py-2 rounded-xl outline-none border-4 focus:border-blue-600'
+                                    onChange={(e: any) => {
+                                        set_chars_description(e.target.value.length);
+                                    }}
+                                    minLength={minimum_description_character_length}
+                                ></textarea>
+
                                 <span className='text-gray-600 text-sm p-2 font-bold'>Use <a className='text-blue-600 cursor-pointer' href={`https://www.markdownguide.org/getting-started/`}>markdown</a> to format your text.</span>
                             </div>
                             <div className="flex">
