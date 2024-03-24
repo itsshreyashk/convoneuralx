@@ -61,7 +61,7 @@ export const General: React.FC<General_Structure> = ({ set_chars_description, ch
                                 <div className="border-4 border-r-0 font-bold text-gray-600 px-4 py-2 w-[max-content] text-xl rounded-l-full">
                                     itsshreyashk/
                                 </div>
-                                <input type="text" name="model_name" id="model_name" className='text-xl w-full text-gray-900 border-4 rounded-r-full focus:border-blue-600 outline-none px-4 py-2 font-bold' placeholder='Model Name' />
+                                <input type="text" name="model_name" id="model_name" className='text-xl w-full text-gray-900 border-4 rounded-r-full duration-200 focus:border-blue-600 outline-none px-4 py-2 font-bold' placeholder='Model Name' />
                             </div>
                             <div className="my-2 space-y-2">
                                 <div className="w-full flex">
@@ -77,7 +77,7 @@ export const General: React.FC<General_Structure> = ({ set_chars_description, ch
                                     id="model_description"
                                     cols={30}
                                     rows={10}
-                                    className='w-full text-gray-800 px-4 py-2 rounded-xl outline-none border-4 focus:border-blue-600'
+                                    className='w-full text-gray-800 duration-200 px-4 py-2 rounded-xl outline-none border-4 focus:border-blue-600'
                                     onChange={(e: any) => {
                                         set_chars_description(e.target.value.length);
                                     }}
@@ -90,7 +90,7 @@ export const General: React.FC<General_Structure> = ({ set_chars_description, ch
                                 <div className="border-4 border-r-0 font-bold text-gray-600 px-4 py-2 w-[max-content] text-xl rounded-l-full">
                                     Image/
                                 </div>
-                                <input type="text" name="model_name" id="model_name" className='text-xl w-full text-gray-900 border-4 rounded-r-full focus:border-blue-600 outline-none px-4 py-2 font-bold' placeholder='Model Image URL' />
+                                <input type="text" name="model_name" id="model_name" className='text-xl w-full text-gray-900 border-4 rounded-r-full duration-200 focus:border-blue-600 outline-none px-4 py-2 font-bold' placeholder='Model Image URL' />
                             </div>
                         </div>
                     </div>
@@ -111,6 +111,7 @@ interface Configuration_Structure {
 export const Configuration: React.FC<Configuration_Structure> = ({ set_current_view }) => {
     return (<>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,100,1,200" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <div className="flex justify-center">
             <div className="w-full max-w-[800px] bg-gray-100 overflow-y-scroll max-h-[100vh]">
                 <div className="text-start px-4 pt-10">
@@ -122,6 +123,35 @@ export const Configuration: React.FC<Configuration_Structure> = ({ set_current_v
                         </span>
                     </div>
                 </div>
+                <div className="border m-4 rounded">
+                    <h2 className='px-4 py-2 font-bold text-green-700'>Necessary Fill-outs</h2>
+                    <div className="px-4 py-2 space-y-2">
+                        <div className="py-4">
+                            <label htmlFor="source_url" className='font-bold p-2'>Source API</label><br />
+                            <input type="text" name="source_url" id="source_url" className="px-4 py-2 rounded-full w-full outline-none border-4 focus:border-blue-600 font-bold duration-200" placeholder={`Type or Paste your model's origin`} aria-autocomplete="none" aria-description="model source" />
+                        </div>
+                        <div className="py-4">
+                            <label htmlFor="" className='font-bold p-2'>Configure Methods</label><br />
+                            {/* Field */}
+                            <div className="border m-2 rounded">
+                                <div className="w-full flex p-4">
+                                    <div className="w-full text-start mt-2 text-sm font-bold">
+                                        <span className="mt-2 text-blue-800">
+                                            Use Default Methods
+                                        </span>
+                                    </div>
+                                    <div className="w-full text-end">
+                                        <span className="material-symbols-rounded m-1 cursor-pointer active:bg-gray-300 rounded-full duration-200">
+                                            radio_button_unchecked
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
 
             </div>
         </div>
