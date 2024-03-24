@@ -19,3 +19,4 @@
 
 
 # Migrate easily
+> Use docker to run easily.
