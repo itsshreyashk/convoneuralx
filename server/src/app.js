@@ -138,7 +138,7 @@ app.post('/create/user', async (req, res) => {
         });
     }
 });
-app.post('/authorize/user', async (req, res) => {
+app.post('/authorize/user', async (req, res, next) => {
     const username = req.body.username.toString(); //username [secured]
     const password = req.body.password.toString(); //password [secured]
     if (await validate_usnm_pwd(username, password)) {
@@ -193,6 +193,7 @@ app.get('/health', async (req, res) => {
 
 });
 app.get('/users/:username', async (req, res) => {
+    console.log("Request made...");
     const username = req.params.username;
 
     const userData = await _User_Manager_.getUserData(username);
@@ -203,7 +204,7 @@ app.get('/users/:username', async (req, res) => {
             email: userData.personal.email,
         })
     } else {
-        res.json({
+        res.status(500).json({
             status: 500,
             message: "User not found",
         })
