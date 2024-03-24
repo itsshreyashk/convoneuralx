@@ -106,7 +106,6 @@ export const General: React.FC<General_Structure> = ({ set_chars_description, ch
 }
 interface Configuration_Structure {
     set_current_view: React.Dispatch<React.SetStateAction<any>>,
-
 }
 export const Configuration: React.FC<Configuration_Structure> = ({ set_current_view }) => {
     return (<>
@@ -141,7 +140,7 @@ export const Configuration: React.FC<Configuration_Structure> = ({ set_current_v
                                         </span>
                                     </div>
                                     <div className="w-full text-end">
-                                        <span className="material-symbols-rounded m-1 cursor-pointer active:bg-gray-300 rounded-full duration-200">
+                                        <span className="material-symbols-rounded m-1 cursor-pointer active:bg-gray-300 rounded-full duration-200 selection-none">
                                             radio_button_unchecked
                                         </span>
                                     </div>

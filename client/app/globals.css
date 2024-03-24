@@ -163,5 +163,8 @@
 }
 
 .no_scrollbar::-webkit-scrollbar {
-    display: hidden;
+    display: hidden !important;
+}
+.selection-none::selection {
+    display: none !important;
 }
