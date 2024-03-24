@@ -123,12 +123,26 @@ export const Configuration: React.FC<Configuration_Structure> = ({ set_current_v
                     </div>
                 </div>
 
-                
             </div>
         </div>
     </>)
 }
 
 export const Deploy: React.FC = () => {
-    return (<>Deploy</>)
+    return (<>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,100,1,200" />
+        <div className="flex justify-center">
+            <div className="w-full max-w-[800px] bg-gray-100 overflow-y-scroll max-h-[100vh]">
+                <div className="text-start px-4 pt-10">
+                    <hr className='mt-16' />
+                    <div className="flex">
+                        <h1 className='text-3xl font-bold pt-6'>Deploy</h1>
+                        <span className="material-symbols-outlined pt-8 px-2 text-gray-600 cursor-pointer">
+                            info
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </>)
 }
