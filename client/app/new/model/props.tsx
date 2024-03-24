@@ -95,7 +95,7 @@ export const General: React.FC<General_Structure> = ({ set_chars_description, ch
                         </div>
                     </div>
                     <div className="w-full text-end py-2 px-4">
-                        <button type="button" aria-label='Proceed' aria-expanded={true} aria-disabled={true} className='px-4 py-2 rounded-xl font-bold text-white bg-green-600 active:bg-green-800 active:outline-green-600 outline-4 outline' onClick={()=> {
+                        <button type="button" aria-label='Proceed' aria-expanded={true} aria-disabled={true} className='px-4 py-2 rounded-xl font-bold text-white bg-green-600 active:bg-green-800 active:outline-green-600 outline-4 outline' onClick={() => {
                             set_current_view('Configuration')
                         }}>Proceed</button>
                     </div>
@@ -108,8 +108,24 @@ interface Configuration_Structure {
     set_current_view: React.Dispatch<React.SetStateAction<any>>,
 
 }
-export const Configuration: React.FC = () => {
+export const Configuration: React.FC<Configuration_Structure> = ({ set_current_view }) => {
     return (<>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,100,1,200" />
+        <div className="flex justify-center">
+            <div className="w-full max-w-[800px] bg-gray-100 overflow-y-scroll max-h-[100vh]">
+                <div className="text-start px-4 pt-10">
+                    <hr className='mt-16' />
+                    <div className="flex">
+                        <h1 className='text-3xl font-bold pt-6'>Configuration</h1>
+                        <span className="material-symbols-outlined pt-8 px-2 text-gray-600 cursor-pointer">
+                            info
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
     </>)
 }
 

@@ -48,7 +48,7 @@ const Page: React.FC = () => {
                 (current_view === 'General') && (<General set_chars_description={set_chars_description} chars_description={chars_description} set_current_view={set_current_view}/>)
             }
             {
-                (current_view === 'Configuration') && (<Configuration />)
+                (current_view === 'Configuration') && (<Configuration set_current_view={set_current_view}/>)
             }
             {
                 (current_view === 'Deploy') && (<Deploy />)
