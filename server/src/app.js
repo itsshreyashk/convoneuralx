@@ -192,26 +192,32 @@ app.get('/health', async (req, res) => {
     }
 
 });
-app.get('/users/:username', async (req, res) => {
-    console.log("Request made...");
-    const username = req.params.username;
-
-    const userData = await _User_Manager_.getUserData(username);
-    if (userData) {
-        res.status(200).json({
-            username: userData.username,
-            age: userData.personal.age,
-            email: userData.personal.email,
-        })
-    } else {
+app.get('/users/:username', async (req, res, next) => {
+    const username = req.params.username.toString();
+    try {
+        const userData = await _User_Manager_.getUserData(username);
+        if (userData) {
+            res.status(200).json({
+                username: userData.username,
+                age: userData.personal.age,
+                email: userData.personal.email,
+            })
+        } else {
+            res.status(500).json({
+                status: 500,
+                message: "User not found",
+            })
+        }
+    } catch (e) {
         res.status(500).json({
-            status: 500,
-            message: "User not found",
+            status : 500,
+            message : "Internal Server Error",
         })
     }
-
 });
 app.post('/create/model', async (req, res) => {
+    const body = req.body;
+    const props = body.props;
     res.send('OK');
 })
 server.listen(PORT, () => {
