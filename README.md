@@ -20,3 +20,7 @@
 
 # Migrate easily
 > Use docker to run easily.
+
+---
+
+![diagram-export-27-03-2024-14_32_10](https://github.com/itsshreyashk/convoneuralx/assets/147302693/1082ac0c-cb42-4b47-a8c9-66c68ec8105f)
