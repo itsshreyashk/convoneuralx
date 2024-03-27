@@ -15,7 +15,7 @@ export const Navigator: React.FC<Navigator_Props> = ({ actions_array, set_curren
             <div className="fixed top-5 p-1 bg-gray-600 border-4 rounded-full right-4 flex justify-between min-w-[max-content] max-w-[600px] shadow-xl">
                 {
                     actions_array.map((element, index) => (
-                        <React.Fragment>
+                        <React.Fragment key={index}>
                             <div className="p-2" key={element.id}>
                                 <span className='text-sm font-bold lato-bold text-white cursor-pointer hover:text-blue-600 duration-200' onClick={() => { set_current_view(element.name) }}>{element.name}</span>
                             </div>
@@ -128,7 +128,11 @@ export const Configuration: React.FC<Configuration_Structure> = ({ set_current_v
                     <h2 className='px-4 py-2 font-bold text-green-700'>Necessary Fill-outs</h2>
                     <div className="px-4 py-2 space-y-2">
                         <div className="py-4">
-                            <label htmlFor="source_url" className='font-bold p-2'>Source API</label><br />
+                            <div className="w-full flex">
+                                <div className="w-full">
+                                    <label htmlFor="source_url" className='font-bold p-2'>API Source</label><br />
+                                </div>
+                            </div>
                             <input type="text" name="source_url" id="source_url" className="px-4 py-2 rounded-full w-full outline-none border-4 focus:border-blue-600 font-bold duration-200" placeholder={`Type or Paste your model's origin`} aria-autocomplete="none" aria-description="model source" />
                         </div>
                         <div className="py-4">
@@ -183,6 +187,13 @@ export const Deploy: React.FC = () => {
                             info
                         </span>
                     </div>
+                </div>
+
+
+                <div className="p-2 space-y-2 flex justify-center">
+                    <button type="button" className="w-full max-w-[400px] px-4 py-2 border text-blue-600 font-bold text-sm active:bg-blue-100 duration-300 rounded-full flex justify-center"><span className="material-symbols-outlined">
+                        done
+                    </span></button>
                 </div>
             </div>
         </div>
