@@ -66,7 +66,7 @@ export const General: React.FC<General_Structure> = ({ set_chars_description, ch
                             <div className="my-2 space-y-2">
                                 <div className="w-full flex">
                                     <div className="w-full text-start">
-                                        <label htmlFor="model_description" className='my-4 px-4 text-gray-800 text-sm font-bold'>Model Description</label><br />
+                                        <label htmlFor="model_description" className='px-4 text-gray-800 text-sm font-bold'>Model Description</label><br />
                                     </div>
                                     <div className="w-full text-end">
                                         <label htmlFor="model_description" className={`my-4 text-${(chars_description <= minimum_description_character_length - 1) ? "red" : "green"}-600 text-sm font-bold`}>{chars_description}/{max_description_character_length}</label><br />
@@ -106,8 +106,8 @@ export const General: React.FC<General_Structure> = ({ set_chars_description, ch
 }
 interface Configuration_Structure {
     set_current_view: React.Dispatch<React.SetStateAction<any>>,
-    use_default_methods_state : boolean,
-    set_use_default_methods_state : React.Dispatch<React.SetStateAction<any>>,
+    use_default_methods_state: boolean,
+    set_use_default_methods_state: React.Dispatch<React.SetStateAction<any>>,
 }
 export const Configuration: React.FC<Configuration_Structure> = ({ set_current_view, use_default_methods_state, set_use_default_methods_state }) => {
     return (<>
@@ -142,7 +142,7 @@ export const Configuration: React.FC<Configuration_Structure> = ({ set_current_v
                                         </span>
                                     </div>
                                     <div className="w-full text-end">
-                                        <span className="material-symbols-rounded m-1 cursor-pointer active:bg-gray-300 rounded-full duration-200 selection-none" onClick={()=> {
+                                        <span className="material-symbols-rounded m-1 cursor-pointer active:bg-gray-300 rounded-full duration-200 selection-none hover:scale-[2] hover:shadow-xl transform" onClick={() => {
                                             set_use_default_methods_state(!use_default_methods_state)
                                         }}>
                                             {
@@ -151,8 +151,15 @@ export const Configuration: React.FC<Configuration_Structure> = ({ set_current_v
                                         </span>
                                     </div>
                                 </div>
+                                <div className="opacity-70 px-4 py-2">
+                                    <b className='text-sm'>Custom methods coming soon.</b>
+                                </div>
                             </div>
-
+                            <div className="w-full text-end py-2 px-4">
+                                <button type="button" aria-label='Proceed' aria-expanded={true} aria-disabled={true} className='px-4 py-2 rounded-xl font-bold text-white bg-green-600 active:bg-green-800 active:outline-green-600 outline-4 outline' onClick={() => {
+                                    set_current_view('Deploy')
+                                }}>Proceed</button>
+                            </div>
                         </div>
                     </div>
                 </div>

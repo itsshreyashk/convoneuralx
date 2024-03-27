@@ -34,7 +34,7 @@ const Page: React.FC = () => {
 
     //Configuration
 
-    const [use_default_methods_state, set_use_default_methods_state] : any = useState(false);
+    const [use_default_methods_state, set_use_default_methods_state] : any = useState(true);
     useEffect(() => {
         document.title = "New Model";
 
