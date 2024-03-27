@@ -106,8 +106,10 @@ export const General: React.FC<General_Structure> = ({ set_chars_description, ch
 }
 interface Configuration_Structure {
     set_current_view: React.Dispatch<React.SetStateAction<any>>,
+    use_default_methods_state : boolean,
+    set_use_default_methods_state : React.Dispatch<React.SetStateAction<any>>,
 }
-export const Configuration: React.FC<Configuration_Structure> = ({ set_current_view }) => {
+export const Configuration: React.FC<Configuration_Structure> = ({ set_current_view, use_default_methods_state, set_use_default_methods_state }) => {
     return (<>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,100,1,200" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -140,8 +142,12 @@ export const Configuration: React.FC<Configuration_Structure> = ({ set_current_v
                                         </span>
                                     </div>
                                     <div className="w-full text-end">
-                                        <span className="material-symbols-rounded m-1 cursor-pointer active:bg-gray-300 rounded-full duration-200 selection-none">
-                                            radio_button_unchecked
+                                        <span className="material-symbols-rounded m-1 cursor-pointer active:bg-gray-300 rounded-full duration-200 selection-none" onClick={()=> {
+                                            set_use_default_methods_state(!use_default_methods_state)
+                                        }}>
+                                            {
+                                                use_default_methods_state ? ('radio_button_checked') : ('radio_button_unchecked')
+                                            }
                                         </span>
                                     </div>
                                 </div>

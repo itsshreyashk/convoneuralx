@@ -35,6 +35,11 @@ try {
             origin: ALLOWED_ORIGINS
         }));
         app.use(express.json());
+        app.use((req, res, next) => {
+            const ip = req.ip || req.connection.remoteAddress; // Get the IP address from the request object
+            console.log(`Request from IP address: ${ip}`);
+            next();
+        });
     }())
 
 } catch (err) {
